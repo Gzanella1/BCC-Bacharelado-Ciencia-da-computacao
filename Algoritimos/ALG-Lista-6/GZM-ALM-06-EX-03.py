@@ -1,13 +1,13 @@
 """ 
 #ESSA FUNÇÃO RETORNA OS ULTIMOS N NUMEROS MAIORES/MENORES QUE O USUARIO DIGITAR
 
-def remove_extremos(lista, sla):
+def remove_extremos(lista, x):
     nova_lista_ordenada=sorted(lista)
     n = len(lista)
-    nova=nova_lista_ordenada[sla : n-sla]
-   for i in range(-sla,0):
+    nova=nova_lista_ordenada[x : n-x]
+   for i in range(-x,0):
         nova.append(nova_lista_ordenada[i])
-    for i in range(0,sla):
+    for i in range(0,x):
         nova.append(nova_lista_ordenada[i])
 
         
@@ -15,11 +15,11 @@ def remove_extremos(lista, sla):
     #PEGA OS VALORES NO INTERVALO QUE O USUARIO DIGITAR 
     lista = [0,1,2,3,4,5,6,7,8,9]
     n = len(lista)
-    for i in range(sla, n-sla):
+    for i in range(x, n-x):
         nova.append(nova_lista_ordenada[i])
 """
-def remove_extremos(lista, sla):
-        return lista[sla: -sla]
+def remove_extremos(lista, x):
+        return lista[x: -x]
 
 
 def main():
