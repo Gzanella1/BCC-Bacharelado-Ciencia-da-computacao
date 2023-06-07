@@ -1,5 +1,3 @@
-
-
 def lista_de_itens(lista):
     n = len(lista)
     if n == 1:
@@ -12,22 +10,22 @@ def lista_de_itens(lista):
             if i < n-2:
                 frase = frase + lista[i] + ", "
             if i == (n-2):
-                frase = frase + lista[i] + " e "
-            else:
-                frase = frase + lista[i]
+                frase = frase + lista[i] + " e "+ lista[n-1]
         return frase
     
-lista=["maça","laranja","banana","limão", "uva"]
-print(lista_de_itens(lista))
 
+def main():
+    #lista de palavra que o usuario informou
+    lista=[]
+    while(True):
+        palavra=input("digite um palavra: ")
+        if(palavra==""):
+            break
+        lista.append(palavra)
+    resposta = lista_de_itens(lista)
+    print(resposta)
 
-"""str=""
-for indice in lista:
-    str=str+indice+","
-print(str)
-
-
-"""
+main()
 
 
 
