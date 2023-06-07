@@ -1,3 +1,4 @@
+
 def precedencia(operador):
     if operador =="+" or operador=="-":
         return 1
@@ -6,11 +7,10 @@ def precedencia(operador):
     elif operador =="^":
         return 3
     else:
-        return -1
-
+        return "Erro entrada invalida resultou em -1"
 
 def main():
-    operador=input("digite um numero: ")
+    operador=input("digite um operador: ")
     prece=precedencia(operador)
     print(prece)
     
