@@ -1,3 +1,13 @@
+def precedencia(operador):
+    if operador =="+" or operador=="-":
+        return 1
+    elif operador =="*" or operador=="/":
+        return 2
+    elif operador =="^":
+        return 3
+    else:
+        return -1
+
 def infix_para_posfix(infix):
     #infix=['(', '2', '+', '3', ')', '*', '2']
     operadores=[]
@@ -9,7 +19,7 @@ def infix_para_posfix(infix):
         #ex: a posição 1  poderia ser um -2  ou 43 ambos contendo dois elementos
         #então se o (primeiro elemento for um numero) ou (um " - ") &  o resto do elemento for um numero entra nesse if
         #contamos  que o primeiro elemento fosse o ("4" -> 43) ou o - do exemplo e o resoto for um numero (-2 -> 2) ou  (43 -> 3)
-        if  token[0:].isdigit() or (token[0] == "-" and token[1:].isdigit()):
+        if  token[0:].isdigit() or (token[0] == "-" and token[1:].isdigit()) or (token[0] == "+" and token[1:].isdigit()):
             #adiciona na lista posfix
             postfix.append(token)
         #verifica se  for um operador 
@@ -18,7 +28,7 @@ def infix_para_posfix(infix):
             #e a ultima posição for digerente de parentes aberto
             #e o antecedente do token atual for menor que a penultimo item dos operadores
             #achei confusa essa parte
-            while len(operadores)>=1 and operadores[-1] != "(" and precedenciaToken < operadores[-2]:
+            while len(operadores)>0 and operadores[-1] != "(" and precedencia(token) < precedencia(operadores[-1]):
                 postfix.append(operadores[-1])
                 operadores.remove(-1)
             operadores.append(token)
@@ -32,7 +42,7 @@ def infix_para_posfix(infix):
                 operadores.remove(operadores[-1])
             #remova o parentes aberto
             operadores.remove("(")
-        precedenciaToken=token
+        
 
     #no final caso sobre algum operador na lista usamos esse lação pare remover de operadores e colocar na posfix
     #exemplo :['2', '3', '+', '2', '*']
