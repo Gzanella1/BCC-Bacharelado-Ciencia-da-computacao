@@ -1,8 +1,7 @@
 import random
 
-def sla():
+def gera_numeros_cartela_bingo():
     b="BINGO"
-
     start=1
     end=15
     dicionario={}
@@ -11,21 +10,18 @@ def sla():
         dicionario[letras]=numerosAleatorios
         start+=15
         end+=15
-    cartela(dicionario)
-
-
-#FALTA TERMINAR 
-#FALTA TERMINAR 
-#FALTA TERMINAR 
-#FALTA TERMINAR 
-#FALTA TERMINAR 
-
-def cartela(cartela):
+    imprime_cartela(dicionario)
+    
+def imprime_cartela(cartela):
+    print("------------------------------------------")
+    print("|   B","       I","      N","      G","      O   |",)
+    print("------------------------------------------")
     for i in range(5):
-        print(cartela["B"][i],"\t",
-            cartela["I"][i],"\t",
-            cartela["N"][i],"\t",
-            cartela["G"][i],"\t",
-            cartela["O"][i],"\t")
+        print("| ",cartela["B"][i],"\t",
+            "| ",cartela["I"][i],"\t",
+           "| ", cartela["N"][i],"\t",
+           "| ", cartela["G"][i],"\t",
+           "| ", cartela["O"][i],"\t","|",)
+    print("------------------------------------------")
 
-sla()
+gera_numeros_cartela_bingo()
