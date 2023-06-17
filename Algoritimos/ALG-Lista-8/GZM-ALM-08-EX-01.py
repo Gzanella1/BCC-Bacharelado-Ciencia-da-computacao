@@ -1,3 +1,5 @@
+# fatorial é um  n  vezes todos os numeros menores que ele
+#n=10 então fatorial=10*9*8*7.....
 def fatorial(n):
     if n>=0:
         if n==1:
