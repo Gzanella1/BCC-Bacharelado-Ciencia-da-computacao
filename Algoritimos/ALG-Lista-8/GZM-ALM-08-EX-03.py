@@ -6,7 +6,12 @@ def palindromo(palavra):
         return False
     elif(len(p) ==1):
         return  True
-    elif(p[0] != p[-1]):
+    elif(p[0] != p[-1]):def palindromo(s):
+    return True if len(s) <= 1 else s[0] == s[-1] and palindromo(s[1:-1])
+
+
+print(palindromo("abcddcba"))
+
         return False
     else:
         return palindromo(p[1:-1])
@@ -20,3 +25,10 @@ def main():
     print(palindromos)
 
 main()
+
+#outra forma mais simples de fazer
+
+def palindromo(s):
+    return True if len(s) <= 1 else s[0] == s[-1] and palindromo(s[1:-1])
+
+print(palindromo("abcddcba"))
