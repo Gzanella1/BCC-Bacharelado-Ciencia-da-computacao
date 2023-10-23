@@ -1,0 +1,35 @@
+graphics:
+
+	
+
+
+
+
+Virtual: 
+
+
+classes ja vem com os membros privados 
+e construtores membros publicos 
+	
+
+// ponteiro de ponteiro do tipo forma que recebe tres posições que dentro das posições tem um ponteiro que referencia por exemplo um circulo 
+Forma ** forma =new Forma *[3]
+formas[0]= &c
+
+
+
+voce nunca pode instanciar uma classe abstrata
+
+pq usa uma classe abstrata: server em tese para classificar/armazenar as outras classes e tratar como se fosse omogenea 
+
+
+Polimorfismo : A principal finalidade do uso da palavra-chave "virtual" está relacionada ao polimorfismo, que permite que objetos de diferentes classes se comportem de maneira semelhante quando chamam funções com o mesmo nome.
+
+Substituição : Quando uma função em uma classe base é declarada como virtual, as classes derivadas podem substituir essa função por sua própria implementação. Isso permite que cada classe derivada forneça uma implementação personalizada da função.
+
+Dinâmica : A resolução de qual função (da classe base ou da classe derivada) será chamada ocorre no tempo de execução, com base no tipo real do objeto. Isso é conhecido como ligação dinâmica ou resolução dinâmica.
+
+Hierarquia de classes : O uso de funções virtuais é comum em classes de classes, onde várias classes derivam de uma classe base comum. Cada classe derivada pode fornecer sua própria implementação para funções virtuais, permitindo uma personalização personalizada do comportamento.
+
+
+cast
