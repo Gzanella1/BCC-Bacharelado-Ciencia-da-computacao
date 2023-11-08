@@ -1,6 +1,8 @@
 #include "window.h"
 #include <iostream>
 #include <cassert>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL.h>
 using namespace std;
 
 Window::Window(int width, int height):

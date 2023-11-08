@@ -1,0 +1,111 @@
+#include <iostream>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL.h>
+#include "window.h"
+
+using namespace std;
+
+#define WIDTH 1200
+#define HEIGHT 800
+
+int main()
+{
+    // Inicialização do SDL
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+        cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
+    // Inicialização da biblioteca SDL_ttf para renderizar texto
+    if (TTF_Init() == -1)
+    {
+        cerr << "TTF_Init error: " << TTF_GetError() << endl;
+        return 1;
+    }
+
+    // Criação da janela SDL
+    SDL_Window* window = SDL_CreateWindow("SDL Text", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+    if (window == nullptr)
+    {
+        cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
+    // Criação do renderer para desenhar na janela
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == nullptr)
+    {
+        cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
+    // Carrega uma fonte TTF (TrueType Font)
+    TTF_Font* font = TTF_OpenFont("arial_bold.ttf", 20);
+    if (font == nullptr)
+    {
+        cerr << "TTF_OpenFont error: " << TTF_GetError() << endl;
+        return 1;
+    }
+
+    // Define a cor do texto
+    SDL_Color textColor = { 255, 255, 255 };
+
+    // Renderiza o texto em uma superfície (SDL_Surface)
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, "giovani + chatGPT = talvez eu consiga fazer o projeto final", textColor);
+
+    // Cria uma textura (SDL_Texture) a partir da superfície de texto
+    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+
+    if (textTexture == nullptr)
+    {
+        cerr << "SDL_CreateTextureFromSurface error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
+    // Define a posição e tamanho do texto na janela
+    SDL_Rect textRect = { 100, 200, textSurface->w, textSurface->h };
+A
+    // Variável de controle para sair do loop principal
+    bool quit = false;
+
+    // Evento do SDL
+    SDL_Event e;
+
+    // Loop principal
+    while (!quit)
+    {
+        // Manipula eventos do SDL
+        while (SDL_PollEvent(&e) != 0)
+        {
+            if (e.type == SDL_QUIT)
+                quit = true;
+            if (e.type == SDL_KEYDOWN)
+            {
+                if (e.key.keysym.sym == SDLK_q)
+                    quit = true;
+            }
+        }
+
+        // Limpa o renderer
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        // Renderiza a textura do texto no renderer
+        SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+
+        // Atualiza a janela
+        SDL_RenderPresent(renderer);
+    }
+
+    // Limpeza e encerramento
+    SDL_DestroyTexture(textTexture);
+    SDL_FreeSurface(textSurface);
+    TTF_CloseFont(font);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    TTF_Quit();
+    SDL_Quit();
+
+    return 0;
+}

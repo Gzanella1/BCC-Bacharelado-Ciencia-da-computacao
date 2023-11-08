@@ -3,9 +3,14 @@
 CXX=c++
 CXXFLAGS=-g $(shell pkg-config sdl2  SDL2_ttf --cflags) 
 SDL_LIBS=$(shell pkg-config sdl2  SDL2_ttf --libs) 
-EXECUTABLES=matrix_test vector3_test window_test particle_test acceleration_test
+EXECUTABLES=acceleration_test
+
+#clematrix_test vector3_test window_test particle_test acceleration_test
 
 all: $(EXECUTABLES)
+
+main: main.cpp
+	$(CXX) main.cpp main
 
 matrix_test: matrix.h array2.h matrix_test.cpp
 	$(CXX) matrix_test.cpp -o matrix_test
@@ -21,6 +26,7 @@ acceleration_test: acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mes
 
 particle_test: particle_test.cpp particle.o 
 	$(CXX) particle_test.cpp particle.o -o particle_test
+
 
 doc:
 	doxygen

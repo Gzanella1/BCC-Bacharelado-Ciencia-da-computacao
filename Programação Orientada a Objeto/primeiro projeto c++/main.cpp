@@ -1,31 +1,17 @@
+#include <iostream>
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL.h>
+#include "textoSDL.h"
 
-int main(int argc, char* argv[]) {
-    // Inicialize a SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        SDL_Log("Erro ao inicializar a SDL: %s", SDL_GetError());
-        return 1;
-    }
+using namespace std;
 
-    // Crie uma janela
-    SDL_Window* window = SDL_CreateWindow("Minha Janela SDL", 
-                                          SDL_WINDOWPOS_UNDEFINED, 
-                                          SDL_WINDOWPOS_UNDEFINED, 
-                                          640, 480, 
-                                          SDL_WINDOW_SHOWN);
+int main()
+{
+    // Cria uma instância da classe SDLApplication com título "SDL Text" e dimensões da janela 800x600
+    TextoSDL app("SDL Text", 800, 600);
+    // Inicia a execução da aplicação
+    app.run();
 
-    if (!window) {
-        SDL_Log("Erro ao criar a janela: %s", SDL_GetError());
-        SDL_Quit();
-        return 1;
-    }
-
-    // Mantenha a janela aberta por alguns segundos (nesse caso, 5 segundos)
-    SDL_Delay(5000);
-
-    // Libere recursos e feche a SDL
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
+    // Retorna 0 para indicar que o programa foi executado com sucesso
     return 0;
 }
