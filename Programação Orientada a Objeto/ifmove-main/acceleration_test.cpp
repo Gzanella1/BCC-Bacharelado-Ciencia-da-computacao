@@ -2,71 +2,74 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL.h>
 #include "window.h"
+#include "textoSDL.h"
 
 using namespace std;
 
 #define WIDTH 1200
 #define HEIGHT 800
 
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL.h>
+#include "window.h"
+
+
+
 int main()
 {
-    // Inicialização do SDL
-    SDL_Init(SDL_INIT_VIDEO);
-    // Inicialização da biblioteca SDL_ttf para renderizar texto
-    TTF_Init();
+    // Inicializar SDL
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+        cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
+        return 1;
+    }
 
-    // Criação da janela usando sua classe Window
-    Window window(WIDTH, HEIGHT);
+    // Inicializar SDL_ttf
+    if (TTF_Init() < 0)
+    {
+        cerr << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << endl;
+        return 1;
+    }
 
-    // Carrega uma fonte TTF (TrueType Font)
-    TTF_Font* font = TTF_OpenFont("arial_bold.ttf", 20);
+    // Criar uma janela
+    Window window(800, 600);
 
-    // Define a cor do texto
-    SDL_Color textColor = { 255, 255, 255 };
+    // Criar um objeto TextoSDL
+    TextoSDL texto("Hello, SDL!", 400, 200, 200, 200);
 
-    // Renderiza o texto em uma superfície (SDL_Surface)
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, "giovani + chatGPT = talvez eu consiga fazer o projeto final", textColor);
-
-    // Cria uma textura (SDL_Texture) a partir da superfície de texto
-    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(window.renderer, textSurface);
-    
-    // Define a posição e tamanho do texto na janela
-    SDL_Rect textRect = { 0, 0, textSurface->w, textSurface->h };
-
-    // Variável de controle para sair do loop principal
-    bool quit = false;
-    // Evento do SDL
-    SDL_Event e;
+    // Carregar texto no objeto TextoSDL
+    texto.loadText("Hello, SDL!", window.renderer);
 
     // Loop principal
+    bool quit = false;
+    SDL_Event e;
     while (!quit)
     {
-        // Manipula eventos do SDL
+        // Processar eventos
         while (SDL_PollEvent(&e) != 0)
         {
             if (e.type == SDL_QUIT)
-                quit = true;
-            if (e.type == SDL_KEYDOWN)
             {
-                if (e.key.keysym.sym == SDLK_q)
-                    quit = true;
+                quit = true;
             }
         }
 
-        // Limpa o renderer
+        // Limpar a tela
         window.clear();
 
-        // Renderiza a textura do texto no renderer
-        SDL_RenderCopy(window.renderer, textTexture, NULL, &textRect);
+        // Renderizar e desenhar o texto
+        texto.render(window.renderer);
+        texto.draw(window);
 
-        // Atualiza a janela
+        // Atualizar a janela
         window.update();
     }
 
-    // Limpeza e encerramento
-    SDL_DestroyTexture(textTexture);
-    SDL_FreeSurface(textSurface);
-    TTF_CloseFont(font);
+    // Finalizar SDL_ttf
+    TTF_Quit();
+
+    // Finalizar SDL
+    SDL_Quit();
 
     return 0;
 }

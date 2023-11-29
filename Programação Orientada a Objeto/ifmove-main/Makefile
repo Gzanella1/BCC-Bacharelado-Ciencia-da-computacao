@@ -27,6 +27,8 @@ acceleration_test: acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mes
 particle_test: particle_test.cpp particle.o 
 	$(CXX) particle_test.cpp particle.o -o particle_test
 
+textoSDL.o: textoSDL.cpp textoSDL.h
+	$(CXX) $(CXXFLAGS) textoSDL.cpp -o textoSDL.o
 
 doc:
 	doxygen

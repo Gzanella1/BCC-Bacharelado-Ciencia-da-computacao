@@ -5,6 +5,9 @@ int main()
     const int rols = 3;
     const int cols = 7;
     Matrix<double> m1{rols, cols};
+
+    m1[0][0].a = 123
+    
     for (int i = 0; i < rols; i++)
         for (int j = 0; j < cols; j++)
             m1.a[i][j] = i * cols + j + 1;

@@ -6,7 +6,7 @@
 #ifndef IFMOVE_WINDOW_H
 #define IFMOVE_WINDOW_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "vector3.h"
 #include "matrix.h"
 #include "rgba.h"
