@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="shortcut icon" href="img/logoifc.png" type="image/x-icon">
+    <title>SCA - Sistema de Compras Acadêmicas</title>
+</head>
+<body>
+    <header>
+        <div class="titulo">        
+            <h1 class="sca">SCA - Sistema de Compras Acadêmicas IFC Blumenau</h1>
+            <span class="mobile">SCA - IFC Blumenau</span>
+            <a href="../main/logout">SAIR</a>
+        </div>
+        <div class="divperfil">
+            <h2><b>Usuário: {{user['nome']}}</b><br>
+                SETOR: {{user['setor']}} <br>
+                CAMPUS BLUMENAU</h2>
+        </div>
+    </header>
+    <main>
+        <div class="center">
+            <div class="botoes-menu">
+                <a class="btn-menu" href="../pedido/index">FAZER PEDIDO</a><br>
+                <a class="btn-menu" href="../pedido/historicoPedidoIndividual/{{user['siape']}}">HISTÓRICO DE PEDIDOS</a><br>
+                <a class="btn-menu" href="#">GERAR FORMULÁRIO DO CAMPUS</a><br>
+            </div>
+            <div class="botoes-menu">
+                <a class="btn-menu" href="../item/index">ITENS</a><br>
+                {% if user['nivel_acesso'] == 1 %}
+                <a class="btn-menu" href="../cadastro/index">CRIAR CONTA DE ADMINISTRADOR</a><br>
+                {% endif %}
+                <a class="btn-menu" href="../cadastro/viewAlterar">ATUALIZAR/EXCLUIR CONTA</a><br>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

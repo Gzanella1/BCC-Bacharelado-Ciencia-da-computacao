@@ -21,8 +21,8 @@ vector3_test: matrix.h array2.h vector3.h vector3_test.cpp
 window_test: window_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o gsquare.o gtriangle.o
 	$(CXX) $(CXXFLAGS) window_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o gsquare.o gtriangle.o -o window_test $(SDL_LIBS)
 
-acceleration_test: acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o gsquare.o gtriangle.o
-	$(CXX) $(CXXFLAGS) acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o gsquare.o gtriangle.o -o acceleration_test $(SDL_LIBS)
+acceleration_test: acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o gsquare.o gtriangle.o textoSDL.o
+	$(CXX) $(CXXFLAGS) acceleration_test.cpp sdl.o window.o gcircle.o graphics.o mesh2.o gmesh2.o grid.o particle.o gparticle.o arrow2.o mesh2_utils.o textoSDL.o gsquare.o gtriangle.o -o acceleration_test $(SDL_LIBS)
 
 particle_test: particle_test.cpp particle.o 
 	$(CXX) particle_test.cpp particle.o -o particle_test

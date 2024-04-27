@@ -12,6 +12,7 @@ using namespace std;
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL.h>
 #include "window.h"
+#include "textoSDL.h"
 
 
 
@@ -35,10 +36,10 @@ int main()
     Window window(800, 600);
 
     // Criar um objeto TextoSDL
-    TextoSDL texto("Hello, SDL!", 400, 200, 200, 200);
+    TextoSDL texto(window.window);
 
     // Carregar texto no objeto TextoSDL
-    texto.loadText("Hello, SDL!", window.renderer);
+    texto.loadText("Hello, SDL!");//window.renderer
 
     // Loop principal
     bool quit = false;
@@ -58,7 +59,7 @@ int main()
         window.clear();
 
         // Renderizar e desenhar o texto
-        texto.render(window.renderer);
+        //texto.render(window.renderer);
         texto.draw(window);
 
         // Atualizar a janela

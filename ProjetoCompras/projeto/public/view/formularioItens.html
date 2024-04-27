@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/cadastro.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="img/logoifc.png" type="image/x-icon">
+    <title>SCA - Sistema de Compras Acadêmicas</title>
+</head>
+<body>
+    <header>
+        <div class="titulo">        
+            <h1 class="sca">SCA - Sistema de Compras Acadêmicas IFC Blumenau</h1>
+            <span class="mobile">SCA - IFC Blumenau</span>
+            <a href="../main/logout">SAIR</a>
+        </div>
+    </header>
+    <main>
+        <div class="center">
+            <div class="div-form">
+                <h3>CADASTRAR NOVO PRODUTO</h3>
+                <form action="../item/cadastrarItem" method="post">
+                    <input type="text" class="campos" name="sipac" id="sipac" placeholder="SIPAC" required><br>
+                    <input type="text" class="campos" name="prod_categoria" id="prod_categoria" placeholder="Categoria do produto" required><br>
+                    <input type="text" class="campos" name="catmat_catser" id="catmat_catser" placeholder="Catmar Catser" required><br>
+                    <input type="text" class="campos" name="natureza_despesa" id="natureza_despesa" placeholder="Natureza da despesa" required><br>
+                    <input type="text" class="campos" name="descricao" id="descricao" placeholder="Descrição" required><br>
+                    <input type="text" class="campos" name="item_pe" id="item_pe" placeholder="Item PE" required><br>
+                    <input type="text" class="campos" name="unidade_medida" id="unidade_medida" placeholder="Unidade de medida" required><br><br>
+                    <div class="bnts-form">
+                        <input type="submit" class="btn-submit only" value="Enviar">
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </main>
+</body>
+
+</html>
