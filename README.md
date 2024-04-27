@@ -1,3 +1,3 @@
 Conteudos no notion:
 
-https://mercurial-salesman-d2c.notion.site/POO-I-356e13bff83148adaaa7b668e151b563?pvs=4 
+https://mercurial-salesman-d2c.notion.site/BCC-3e083029489046d0a48ab6d7f3d3feb5?pvs=4
