@@ -1,0 +1,12 @@
+1) Analisar e aprimorar as classes a seguir, testar as classes com uma pessoa que exerça ambas as profissões: 
+- Vendedor (cpf, nome, email, telefone, comissão, área de vendas:string [exemplos: móveis, eletrônicos, decoração])
+- Motorista (cpf, nome, email, telefone, número da CNH, data de vencimento da CNH)
+Usar uma solução com herança e outra com composição.
+
+2) Analisar e aprimorar as classes a seguir, testar as classes:
+- Carro (número de lugares, placa, renavam, cor, modelo, proprietário [pode ser vendedor ou motorista])
+- Moto (cilindradas, cor, modelo, placa, proprietário)
+Usar uma solução com herança e outra com composição.
+
+Postar a solução no fórum.
+

@@ -1,0 +1,63 @@
+1) Proponha uma maneira de melhorar a modelagem das classes abaixo (explique e forneça a definição das novas classes).
+
+- Livro(autores, título, ano, ISBN, número de páginas, editora, edição)
+- Apostila(autores, título, número de páginas, link onde o material está disponível, data de obtenção de material, data da última atualização da apostila)
+
+2) Assinale V ou F:
+
+a) (   ) Um "motor de jogo" é um software altamente reusável
+b) (   ) Um "motor de jogo" é um software extensível
+c) (   ) Em repositórios de código público, segundo estudos da literatura científica, é mais comum haver mudanças relacionadas a refatoramento regular do que mudanças relacionadas a melhoria no aspecto de reusabilidade
+d) (   ) Em programas de código aberto existe pouca reutilização, sendo a maioria dos códigos programas inéditos
+e) (   ) Ainda que seja comum programadores obterem informações de sites como o StackOverflow, aplicações não são construídas com códigos advindos de sites como esse
+f) (   ) Repositórios de código público são bons locais para se explorar aspectos de software como legibilidade, reusabilidade e complexidade
+g) (   ) Alterações em métodos (mover, extração, etc) são frequentemente realizadas tendo por objetivo melhorar a reusabilidade dos códigos relacionados
+h) (   ) Alterações em nomes de métodos e atributos são frequentemente realizadas tendo por objetivo melhorar a reusabilidade dos códigos relacionados
+
+3) Associe cada tipo de alteração abaixo com a respectiva descrição:
+
+a) Movimentação de método
+b) Pull-up de método
+c) Extração de método
+
+(  ) Mover um método de uma classe filha para uma classe pai
+(  ) Mover um método para uma classe utilitária para que possa ser utilizada por outras classes
+(  ) Mover um trecho de código para um método, e subtituir o trecho de código pela chamada do método
+
+4) Complete as lacunas do texto a seguir:
+
+Módulos reusáveis devem possuir _______ (alta/baixa) complexidade, _______ (boa/nenhuma) documentação (comentários no código), ______ (muitas/poucas) dependências externas e confiabilidade __________ (comprovada/básica), por meio de testes e validações.
+
+5) O que o paradigma de orientação a objetos aprimorou no aspecto de reusabilidade, em relação ao paradigma procedural, que contava com o uso de bibliotecas de funções e variáveis?
+
+6) Qual é o papel da engenharia reversa no contexto de reutilização de software?
+
+7) Explique como a reflexão é utilizada para estender a funcionalidade de linguagens por meio do uso de anotações.
+
+8) Quando se diz que em uma linguagem "tudo é objeto", qualquer aspecto da linguagem (instância, classe, métodos, etc) pode ser refletido. Essa característica pode ser definida como:
+
+a) auto-representação universal
+b) auto-representação uniforme
+c) auto-representação difusa
+d) coesão
+e) acoplamento
+
+9) O que o comando abaixo faz?
+
+Class<?> hm = Class.forName("java.util.HashMap");
+
+10) Considere um código que está em um arquivo chamado "livro.pas"; esse arquivo está em um diretório chamado "modelo", que se encontra dentro de outro diretório chamado "sistema". Um programa terceiro deseja utilizar o código mencionado. Como deve ser o pseudo código de importação desse código pelo programa terceiro?
+
+11) Considere uma tabela chamada "livro" que possui os seguintes campos (todos string): titulo, ano, autores. Escolha uma linguagem e forneça o código de uma classe que mapeie os campos dessa tabela em atributos, e forneça um exemplo de código que crie um novo livro e insira na tabela.
+
+12) Na linguagem Java, há um método chamado "toString"; esse método é equivalente ao método "__str__" no python. Qual é a utilidade desse método?
+OBS: em c++ não existe esse método padão para ser sobreescrito, mas há outras opções:
+https://stackoverflow.com/questions/53211020/making-my-own-tostring-method-on-c-struct
+
+13) Uma lista ligada e um vetor dinâmico são duas estruturas que possuem a mesma lista do operações (que especificam acesso e manipulação sequencial aos seus elementos), porém não compartilham trechos de implementação (não possuem ligação "genética"). Essas duas estruturas poderiam ser generalizadas e promover a criação de uma superclasse ou o uso de uma interface é mais apropriado nesse caso? Justifique.
+
+14) Em Java, interfaces e classes abstratas são diferenciadas sintaticamente, por meio das palavras interface e extends, respectivamente. Em C++, a diferença entre interface e classe abstrata é apenas uma diferença semântica. Observe estes códigos como exemplos em C++:
+https://gitlab.com/hvescovi/prog24/-/tree/main/oo/c_plus_plus/02-abstract-and-interface
+Com base nos exemplos, explique qual é a utilidade da paravra "virtual" em C++.
+
+FIM
