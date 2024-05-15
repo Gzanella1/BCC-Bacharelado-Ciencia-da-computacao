@@ -1,0 +1,18 @@
+Novas linguagens trouxeram formas mais eficientes de reusabilidade, adaptadas a novas plataformas. 
+
+Componentes de software aberto são geralmente distribuídos em gerenciadores de pacotes online, como rpm para javascript.
+
+Componentes podem ficar com suas dependências desatualizadas. Isso pode provocar bug e falhas de segurança. Porém, a atualização das dependências pode incorrer em falhas de incompatibilidade.
+
+Qual versão usar? A mais recente, mais estável ou mais segura? O artigo busca trazer apoio na decisão sobre quando atualizar. A diferença entre a versão atualmente usada e a que deveria ser a melhor (recente, estável, segura) é o "lag" considerado no título do artigo.
+
+O artigo original está disponível para folhear:
+zerouali2019formal (JSEP) A formal framework for measuring technical lag in component repositories - and its application to npm.pdf
+
+Uma possível pista externa:
+
+"They are also useful in development: they auto-restart an app once its source files or dependencies are updated. "
+https://blog.appsignal.com/2022/03/09/a-complete-guide-to-nodejs-process-management-with-pm2.html
+
+
+

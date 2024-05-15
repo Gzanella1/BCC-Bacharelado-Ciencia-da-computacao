@@ -1,0 +1,54 @@
+1) Assinale V ou F:
+
+a) (   ) É mais fácil implementar código reutilizável de que código não-reutilizável.
+b) (   ) Um framework é um artefato mas amplo do que uma biblioteca.
+c) (   ) É possível somar uma casa e uma banana, se esses itens forem objetos que possuam métodos que compreendam uma mensagem de acionamento de método chamada "soma"
+d) (   ) Não é possível criar um vetor de elementos diferentes, mesmo que eles possuam relações de herança entre si (por exemplo, são classes "irmãs").
+e) (   ) Não é possível criar uma lista de elementos diferentes.
+f) (   ) Classes diferentes podem possuir nomes de métodos iguais.
+
+2) Suponha que você possui uma função chamada SomarMatrizes, que recebe duas matrizes e retorna a soma entre elas. Você deseja converter essa função para uma versão de programa orientada a objetos. Considere que haverá uma classe chamada Matriz e que o método "somar" receberá como parâmetro um objeto do tipo Matriz. Esse método retornará a soma das matrizes. Considerando esse novo código orientado a objetos, forneça: a) a assinatura de método "somar"; b) um exemplo de código que cria duas matrizes e armazene a matriz resultante da soma em outro objeto.
+
+3) Classes abstratas podem possuir métodos concretos?
+
+4) Interfaces podem possuir métodos concretos?
+
+5) Informe se os arquivos de persistência XML e JSON a seguir são idênticos em estrutura.
+https://gitlab.com/hvescovi/prog24/-/tree/main/oo/java/patterns/03-adapter/MonitoringMaven_xml_json/bdxml
+https://gitlab.com/hvescovi/prog24/-/tree/main/oo/java/patterns/03-adapter/MonitoringMaven_xml_json/bdjson
+
+6) Porque a classe anotada para XML continua funcionando quando é utilizada persistência em JSON?
+https://gitlab.com/hvescovi/prog24/-/blob/main/oo/java/patterns/03-adapter/MonitoringMaven_xml_json/src/main/java/model/Produto.java
+
+7) Implemente uma maneira de garantir que os dois DAOs e novos DAOs que surgirem possuam os mesmos métodos, de maneira que um cliente possa "trocar" o DAO que utiliza sem precisar alterar as chamadas feitas ao DAO.
+https://gitlab.com/hvescovi/prog24/-/tree/main/oo/java/patterns/03-adapter/MonitoringMaven_xml_json/src/main/java/dao
+
+8) Qual a diferença entre métodos concretos e métodos abstratos?
+
+9) Para implementar persistência em uma ou mais classes pode-se fazer uso de mapeadores objeto-relacionais (ORM: Object-Relational Mapping). Forneça um exemplo de duas classes relacionadas persistentes.
+
+10) Considere o caso das classes Pessoa, Motorista e Vendedor. Para fazer o reaproveitamento de informações, é melhor utilizar composição ou herança? Justifique.
+
+11) Considere o caso das classes Veiculo, Carro e Moto. Para fazer o reaproveitamento de informações, é melhor utilizar composição ou herança? Justifique.
+
+12) Considere uma classe chamada Veiculo, que possui dentre outros métodos um método chamado "toString". Esse método retorna os valores dos atributos em versão textual. Existe também uma classe chamada Carro, que é uma classe "filha" da classe Veiculo. Ao confeccionar o método "toString" da classe Carro, é possível reaproveitar o método toString da classe pai. Como isso pode ser feito? Forneça um exemplo.
+
+13) É possível instanciar objetos a partir de classes abstratas? Se sim, forneça um exemplo. Se não, explique a utilidade de uma classe abstrata.
+
+14) Classes concretas podem possuir métodos abstratos?
+
+15) Quando ocorre herança a partir de classes concretas, os atributos também são herdados?
+
+16) Se houver alguma opção abaixo que não seja uma forma de reuso de software, aponte e explique:
+
+a) Desenvolver sistemas a partir do zero
+b) Fazer a manutenção de sistemas
+c) Corrigir erros em sistemas
+d) Adaptar o sistema a um novo hardware
+e) Melhorar o desempenho de um sistema
+f) Ampliar a funcionalidade de um sistema
+
+17) Analise a seguinte frase: "Espera-se que programadores gastem tempo tanto quanto em ler código antigo e ver como reusá-lo, assim como para criar novos códigos". Comente algo sobre essa afirmação.
+
+FIM
+
