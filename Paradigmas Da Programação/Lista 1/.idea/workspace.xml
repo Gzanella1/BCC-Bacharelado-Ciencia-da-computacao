@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f1bd67fd-4ea7-422b-8730-9611f2666c9f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Algebra/Materiais do professor/5 TRANSFORMAÇÕES LINEARES/5 A TRANSFORMAÇÕES LINEARES COMPLETO.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Algebra/Materiais do professor/5 TRANSFORMAÇÕES LINEARES/5 A TRANSFORMAÇÕES LINEARES COMPLETO.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO I/BlobbyVolley" beforeDir="false" afterPath="$PROJECT_DIR$/../../POO I/BlobbyVolley" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO I/janelaz" beforeDir="false" afterPath="$PROJECT_DIR$/../../POO I/janelaz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../POO II/JogoXadrez" beforeDir="false" afterPath="$PROJECT_DIR$/../../POO II/JogoXadrez" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lista 1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/Lista 1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/exercicio1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/exercicio2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lista 1/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lista 2/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista 2/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lista 2/exercicio06.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista 2/exercicio06.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lista 2/exercicio10.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista 2/exercicio10.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lista 2/exercicio11.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista 2/exercicio11.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lista 2/exercicio12.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lista 2/exercicio12.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../desenvolvimento web/Trabalho 1- Portifolio pessoal/Projetos/Projeto-final-entra21" beforeDir="false" afterPath="$PROJECT_DIR$/../../desenvolvimento web/Trabalho 1- Portifolio pessoal/Projetos/Projeto-final-entra21" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Gzanella1"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Gzanella1/BCC-Bacharelado-Ciencia-da-computacao.git",
+    "accountId": "e9fe962a-db01-4bb5-97dc-ad66f39897f3"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2gjclT47VfK9w5VZM4TEg7t2iNP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f1bd67fd-4ea7-422b-8730-9611f2666c9f" name="Changes" comment="" />
+      <created>1716214578905</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716214578905</updated>
+    </task>
+    <servers />
+  </component>
+</project>

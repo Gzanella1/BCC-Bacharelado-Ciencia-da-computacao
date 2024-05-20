@@ -18,7 +18,6 @@ int main() {
     int tamanho = sizeof(array) / sizeof(array[0]);
 
     printf("Digite um número: ");
-    // esse scanf peguei na net pois não sabia como solicitar info do usuário em "C";
     scanf("%d", &num1);
 
     if(pertence(array ,num1, tamanho)){

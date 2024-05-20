@@ -1,50 +1,50 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
-#include <ctype.h>
+#include <time.h>
 
-void calcularDigitosVerificadores(char cpf[], int *digito1, int *digito2) {
-    int i, j;
-    int digitos[11];
-
-    // Remover caracteres não numéricos do CPF
-    int tam = strlen(cpf);
-    for (i = 0, j = 0; i < tam; i++) {
-        if (isdigit(cpf[i])) {
-            digitos[j++] = cpf[i] - '0';
+bool primo(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    if (num <= 3) {
+        return true;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
         }
     }
-
-    // Calcular primeiro dígito verificador
-    int soma = 0;
-    for (i = 0; i < 9; i++) {
-        soma += digitos[i] * (10 - i);
-    }
-    *digito1 = 11 - (soma % 11);
-    if (*digito1 >= 10) {
-        *digito1 = 0;
-    }
-
-    // Calcular segundo dígito verificador
-    soma = 0;
-    for (i = 0; i < 10; i++) {
-        soma += digitos[i] * (11 - i);
-    }
-    *digito2 = 11 - (soma % 11);
-    if (*digito2 >= 10) {
-        *digito2 = 0;
-    }
+    return true;
 }
 
 int main() {
-    char cpf[] = "102.461.259-57"; // Exemplo de CPF sem dígitos verificadores
-    int digito1, digito2;
+    int qtde_primos = 0;
+    int qtde_gerados = 0;
+    int primos[25] = {0}; // Vetor para armazenar os números primos encontrados
 
-    calcularDigitosVerificadores(cpf, &digito1, &digito2);
+    srand(time(NULL)); // Inicializa a semente do gerador de números aleatórios
 
-    printf("Primeiro dígito verificador: %d\n", digito1);
-    printf("Segundo dígito verificador: %d\n", digito2);
+    while (qtde_primos < 25) {
+        int num = rand() % 100 + 1; // Gera um número aleatório entre 1 e 100
+        if (primo(num)) {
+            // Verifica se o número primo já foi encontrado
+            bool encontrado = false;
+            for (int i = 0; i < qtde_primos; i++) {
+                if (primos[i] == num) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                primos[qtde_primos] = num;
+                qtde_primos++;
+                printf("Número primo encontrado: %d\n", num);
+            }
+        }
+        qtde_gerados++;
+    }
 
+    printf("Quantidade de números gerados: %d\n", qtde_gerados);
     return 0;
 }
-

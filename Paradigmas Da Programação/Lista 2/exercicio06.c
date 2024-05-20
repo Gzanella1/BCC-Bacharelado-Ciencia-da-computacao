@@ -23,7 +23,6 @@ int saoAmigos(int num1, int num2) {
 int main() {
     int num1, num2;
     printf("Digite DOIS números: ");
-    // esse scanf peguei na net pois não sabia como solicitar info do usuário em "C";
     scanf("%d %d", &num1, &num2);
 
     saoAmigos(num1,num2);
