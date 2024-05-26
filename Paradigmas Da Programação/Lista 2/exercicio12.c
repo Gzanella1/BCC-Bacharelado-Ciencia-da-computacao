@@ -4,9 +4,50 @@
 #include <string.h>
 #include <ctype.h>
 
+
+//faz a verificação do nosso 
+int array_inteiros(int array[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        if (!isdigit(array[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int igual(int array[], int tamanho) {
+    // variavel auxiliar informando que os indices são iguais
+    int indicesIguais= 1;
+    // percore a array 
+    for(int i=0; i< tamanho; i++){
+
+        if(array[i] != array[0]){
+            indicesIguais=0;
+            break;
+        }
+    }
+    return indicesIguais;
+}
+
+
+
+
 int valida_cpf(int cpF[], int tam) {
+    //para fazer o calculo peguei um site na internte 
+    //https://www.macoratti.net/alg_cpf.htm
     int soma = 0, digitoV1, digitoV2;
 
+
+    // Verifica se todas as posições contêm um elemento do tipo int
+    if (array_inteiros(cpF, tam)) {
+        printf("Aviso: O CPF deve conter exatamente 11 dígitos inteiros.\n");
+        return 0;
+    }
+
+    if(igual(cpF,tam)){
+        printf("todos os valores são iguais\n");
+        return 0;
+    }
 
     // Calcula o primeiro dígito verificador
     for (int i = 1; i <= 9; i++) {
@@ -43,24 +84,15 @@ int valida_cpf(int cpF[], int tam) {
     }
 }
 
-int array_inteiros(int array[], int tamanho) {
-    for (int i = 0; i < tamanho; i++) {
-        if (!isdigit(array[i])) {
-            return 0;
-        }
-    }
-    return 1;
-}
+
 
 int main() {
     char cpf_Char[12];
     int cpf[11];
 
-    printf("Digite o CPF (somente números): ");
-    fgets(cpf_Char, sizeof(cpf_Char), stdin);
-
-    // Remove o caractere de nova linha ('\n') do final da string
-    cpf_Char[strcspn(cpf_Char, "\n")] = '\0';
+    printf("Digite o CPF (somente números):");
+    scanf("%11s", cpf_Char);
+    //fgets(cpf_Char, sizeof(cpf_Char), stdin);
 
     // Converte os caracteres do CPF de string para inteiros
     for (int i = 0; i < 11; i++) {
@@ -69,7 +101,7 @@ int main() {
 
     int tam = sizeof(cpf) / sizeof(cpf[0]);
     if (valida_cpf(cpf, tam)) {
-        printf("CPF válido.\n");
+        printf("CPF válido.\n");    
     } else {
         printf("CPF inválido.\n");
     }
