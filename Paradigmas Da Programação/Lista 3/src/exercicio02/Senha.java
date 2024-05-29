@@ -38,20 +38,43 @@ public class Senha {
     }
 
 
-    public static void trocarSenha(Senha senhaAntiga, String novaSenha) {
-        if (senhaAntiga.isBloqueado()) {
+    public void trocarSenha(String senhaAntiga, String novaSenha) {
+        // se a esta bloqueada
+        if (isBloqueado()) {
             System.out.println("A senha está bloqueada. Não é possível efetuar a alteração da senha.");
         } else {
-            // se a senha for a correta ele pode trocar
-            if(senhaAntiga.entraSenha(senhaAntiga.getSenha())){
-                senhaAntiga.setSenha(novaSenha);
-                System.out.println("senha torcada para :"+senhaAntiga.getSenha());
+            if(getSenha().equals(senhaAntiga)){
+                setSenha(novaSenha);
+                setTentativas(3);
+                System.out.println("senha foi torcada para :" + getSenha());
             }
             else{
-                System.out.println("else / else do trocar senha");
+                setTentativas(-1);
+                System.out.println("Senha antiga incorreta. Você tem mais " + getTentativas() + " tentativa(s).");
+                if (getTentativas() == 0) {
+                     setBloqueado(true);
+                    System.out.println("A senha foi bloqueada após 3 tentativas incorretas.");
+                }            }
+        }
+    }
+
+
+    public void trocarSenha1(String senhaAntiga, String novaSenha) {
+        // se a esta bloqueada
+        if (isBloqueado()) {
+            System.out.println("A senha está bloqueada. Não é possível efetuar a alteração da senha.");
+        } else {
+            if(entraSenha(senhaAntiga)){
+                setSenha(novaSenha);
+                setTentativas(3);
+                System.out.println("senha foi torcada para :" + getSenha());
             }
         }
     }
+
+
+
+
 
 
     public String getSenha() {

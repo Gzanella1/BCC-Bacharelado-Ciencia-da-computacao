@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) aaaLaunch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "C:\\Users\\giova\\OneDrive\\Documentos\\BCC-Bacharelado-Ciencia-da-computacao\\Paradigmas Da Programação\\Lista 2\\a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "C:\\Users\\giova\\OneDrive\\Documentos\\BCC-Bacharelado-Ciencia-da-computacao\\Paradigmas Da Programação\\Lista 2\\a.out",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build"
+        }
+    ]
+}
