@@ -17,6 +17,16 @@ public class Porta {
         this.dimensaoZ = dimensaoZ;
     }
 
+    @Override
+    public String toString() {
+        return "Porta{" +
+                "aberta=" + aberta +
+                ", cor='" + cor + '\'' +
+                ", dimensaoX=" + dimensaoX +
+                ", dimensaoY=" + dimensaoY +
+                ", dimensaoZ=" + dimensaoZ +
+                '}';
+    }
 
     public void abre(){
         // se fechada então abre
