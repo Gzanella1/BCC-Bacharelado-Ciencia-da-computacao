@@ -1,0 +1,248 @@
+Paradigmas de Programação - Aula 5
+
+Paradigma Imperativo:
+Latim: imperare - imperar, reinar, governar, dominar, mandar, ordenar.
+- Modelo em que a programação é feita com comandos que mudam o estado do programa. A programação descreve o fluxo de controle, e é baseada na arquitetura de von Neumann.
+- O paradigma orientado a objetos é um exemplo de subcategoria do paradigma imperativo (LIERET, 2020). Sebesta faz a mesma afirmação.
+Características:
+- Dados e programas são armazenados na mesma memória.
+- CPU executa instruções.
+- Exemplos de linguagens: C, C++, C#, Java, Python.
+- Caracterizam-se por 3 construções: variável, atribuição e sequência.
+- Dividido em estruturado e não estruturado.
+
+Paradigma estruturado: reduzido a três estruturas (sequência, decisão e repetição).
+	- Essas estruturas especificam os passos necessários para que o programa atinja o resultado esperado.
+		* Surgiram na década de 50, com ALGOL.
+		* Representa a forma "natural" de pensar na solução de problemas.
+		* Exemplos: ALGOL, C, Python, Java.
+
+Paradigma procedural: código contém as três estruturas e tem como unidade básica a função. A função é um bloco de código "autocontido", reusável, com instruções que realizam uma tarefa específica. Utilizando funções podemos decompor um problema maior em subproblemas. Uma vez que uma função é escrita, ela pode ser usada continuamente. Uma função pode ser chamada de dentro de outras funções, e até de dentro dela mesma. Em geral, possui uma lista de parâmetros (que pode ser vazia) e um tipo de retorno.
+	- O código é organizável, reusável e modular.
+	- Exemplos de linguagens: C, Python, Basic, Fortran, Perl, PHP.
+
+Linguagem C:
+- Criada por Dennis Ritche, em 1972.
+- Baseada em uma linguagem de programação da Bell Laboratories, cujo nome era "B" (daí o nome "C").
+- Aplicações: kernel de sistemas operacionais, drivers, compiladores, etc.
+- Linguagem de tipagem estática e fraca (há muita discussão sobre a "fraqueza" do seu sistema de tipos, que melhorou)
+- Em C, a função main é sempre o ponto de partida do programa. De acordo com o padrão ANSI C, as cinco opções abaixo são as assinaturas válidas para esta função:
+int main()
+int main(void)
+int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *envp[])
+int main(int argc, char **argv)
+ Ver arquivo exemplo1.
+- Tipos: char, int, double, float, unsigned int, short. Ver arquivo exemplo2.
+Ex: int x;
+- Estruturas de decisão: if e switch. Ver arquivos exemplo3, exemplo4 e exemplo5.
+- Estruturas de repetição: for, while e do.. while. Ver arquivos exemplo6, exemplo7 e exemplo8.
+- Decisão e repetição também podem ser implementados com goto! Ver arquivo exemplo5.
+- Aceita pré/pós-in/decremento.
+- printf() escreve
+- scanf() lê
+- Funções criadas pelo usuário podem ser definidas antes do uso ou conter uma assinatura antes de sua execução (protótipo). Ver arquivos exemplo9 e exemplo10.
+- Strings são implementadas como sequências de char, o que é feito por meio de ponteiros e/ou arrays. Ver arquivo exemplo11.
+- Array: tipo identificador[tamanho]. Ver arquivos exemplo12 e exemplo13.
+- Matriz: tipo identificador[tamanhoLinha][tamanhoColuna] (de 2 dimensões). Ver arquivo exemplo14.
+- Principais bibliotecas: stdio, stdlib, math e string. Todas podem ser importadas utilizando:
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h> (ver arquivo exemplo15)
+#include <string.h>
+- Diretiva #define: utilizada para definir macros. Exemplo:
+#define MAX 12
+- Tanto #include quanto #define são analisados pelo pré-processador, uma ferramenta chamada antes que aconteça a tradução do código. Ele substitui as macros (das diretivas #define) e inclui os arquivos (das diretivas #include).
+O pré-processador seria a ferramenta que converte diretivas antes de ocorrer o processamento do código.
+
+Forma resumida de compilação:
+> gcc arquivo.c
+Gera um arquivo executável chamado a.out. Para executá-lo, basta digitar ./a.out.
+
+Forma completa de uso (compilação e execução):
+> gcc arquivo.c -o arquivo -lm && ./arquivo
+-lm é a opção para ligar a biblioteca matemática. Em exercícios que não a usam, este parâmetro é opcional.
+
+Ainda sobre -lm: -l<library> realiza a ligação de uma biblioteca com os códigos objeto gerados no projeto, assim formando o arquivo executável. No nosso exemplo de forma completa, -lm fará com que a biblioteca matemática seja carregada e ligada ao(s) nosso(s) código(s) compilado(s), formando o arquivo executável de forma a reconhecer chamadas a funções matemáticas, tais como sqrt(), log10(), pow() etc.
+
+Há outras formas de usar o gcc. Por exemplo, acrescentando -Werror=implicit-function-declaration (como já vimos, trata como erro o aviso sobre declaração implícita de função), inserindo apenas -Werror (trata todo warning como erro) etc. Outras opções no gcc podem ser consultadas em https://gcc.gnu.org/onlinedocs/gcc/.
+
+Serviço(s) on-line para programar e compilar códigos C:
+https://www.onlinegdb.com/online_c_compiler
+https://www.programiz.com/c-programming/online-compiler/
+
+Um exemplo de código:
+// Bibliotecas utilizadas no código
+#include <stdio.h>
+
+// Função principal
+void main() {
+
+	// Variáveis
+	char* nome; //Pode substituir por char nome[256]; (no onlinegdb funcionará)
+	int idade;
+	
+	// Comandos de saída e entrada
+	// %s = string
+	// %i = inteiro
+	// %*c = ponteiro para caractere(s)
+
+	printf("Digite seu nome: ");
+	//scanf("%s", nome);
+	scanf ("%[^\n]%*c", nome);
+
+	printf("Digite sua idade: ");
+	scanf("%i", &idade);
+
+	printf("%s tem %i anos!\n", nome, idade);
+}
+
+Outro exemplo de código:
+// Bibliotecas utilizadas no código
+#include <stdio.h>
+
+unsigned int somaValores(unsigned int n) {
+	/*
+	if (n == 0)
+		return 0;
+	return n + somaValores(n-1);
+	*/
+	int resposta = 0;
+	while (n > 0) {
+		resposta = resposta + n;
+		n--;
+	}
+
+	return resposta;
+}
+
+// Função principal, agora com retorno inteiro
+int main() {
+
+	// Variável
+	unsigned int numero;
+	
+	// Comando de saída e entrada de dados
+	printf("Digite um número não negativo: ");
+	scanf("%u", &numero);
+
+	printf("A soma de valores de 0 até %u é %u\n", numero, somaValores(numero));
+
+	// retorno da função main
+	return 0;
+}
+
+Outro exemplo de código, dessa vez para elucidar a tipagem fraca:
+#include <stdio.h>
+
+int main() {
+    
+    int i = 92;
+    void *v = &i;
+    char *c = v;
+    
+    printf("%c", *c);
+    
+    return 0;
+}
+
+Em um compilador de sua preferência (ex: https://www.onlinegdb.com/online_c_compiler), execute o código acima. Depois troque para o compilador C++ (no exemplo, altere de C para C++, em Language, no canto superior direito) e tente executar o mesmo código. Verá que o compilador impedirá a conversão de void* para char*, o que não ocorre com o compilador C (em alguns compiladores aparecerá um aviso - warning).
+
+* Operador de Referência
+
+Em C, usa-se o operador & para referenciar o endereço de memória de uma variável. Por exemplo:
+#include <stdio.h>
+
+int main() {
+  double salario = 9050.17;
+  
+  printf("%.2lf\n", salario);
+  printf("%p\n", &salario);
+  
+  return 0;
+}
+
+Neste exemplo, a formatação da saída foi feita com %p porque salário é um ponteiro para um endereço de memória. Ponteiro, portanto, é uma variável que armazena um endereço de memória de outra variável. Uma variável de ponteiro aponta para um tipo de dados (como int) do mesmo tipo e é criada com o operador asterisco (*). O endereço da variável com a qual você está trabalhando é atribuído ao ponteiro. Veja no exemplo a seguir, alterando o código anterior e atribuindo o endereço de memória da variável salário a uma variável de ponteiro:
+#include <stdio.h>
+
+int main() {
+  double salario = 9050.17;
+  double *ponteiroSalario = &salario;
+  
+  printf("%.2lf\n", salario);
+  printf("%p\n", &salario);
+  printf("%p\n", ponteiroSalario);
+  
+  return 0;
+}
+
+No exemplo acima, uma variável de ponteiro foi criada (ponteiroSalario). Ela aponta para uma variável do tipo double (salario). Note que o tipo de ponteiro tem que ser do mesmo tipo da variável que ele pretende apontar. O operador & foi utilizado para armazenar o endereço de memória da variável salário, sendo atribuído ao ponteiro.
+
+Na declaração de variáveis, o operador asterisco tem a função de declarar uma variável de ponteiro. Ao utilizá-lo no meio do código, é dito que o operador * tem função de operador de desreferência. Veja no exemplo abaixo:
+
+#include <stdio.h>
+
+int main() {
+  double salario = 9050.17;
+  double *ponteiroSalario = &salario;
+  
+  printf("%.2lf\n", salario);
+  printf("%p\n", &salario);
+  printf("%.2lf\n", *ponteiroSalario);
+  
+  return 0;
+}
+
+Exercícios.
+
+O programa deve ser feito de forma descendente, com a decomposição do problema inicial em módulos, de modo a dividir as ações complexas em uma sequência de ações mais simples.
+Essa técnica de programação é chamada de programação:
+A) Abstrata.
+B) Interna.
+C) Declarativa.
+D) Sequencial.
+E) Modular
+
+Considere o código em Linguagem C, abaixo. Suponha que ele está no corpo de uma função que foi chamada:
+ int x = 3, y = 1, z = -5, w = -2;
+ int i;
+ for (i = 1; i < x; i++) {
+   while (z < 0) {
+      ++i;
+      z++;
+      do {
+        x = x + 3;
+        w++;
+      } while (w < 0);
+    }
+ }
+ printf("%d %d %d %d", x, y, z, w);
+
+Assinale a alternativa que corresponde à saída impressa na tela.
+A) 21 1  0  4
+B) 3  1 -5 -2
+C) 2  0 -4 -1
+D) 9  0 -3 -2
+E) 1  0  9  2
+
+Considere as afirmações abaixo sobre comandos em linguagens de programação:
+I. Uma declaração de variável associa um nome a um valor que, geralmente, não pode ser alterado durante a execução do programa.
+II. Expressões aritméticas são expressões cujos resultados são valores numéricos, inteiros ou fracionários.
+III. Expressões lógicas são aquelas que têm como resultado um dos dois valores, verdadeiro ou falso.
+Quais estão corretas?
+A) Apenas I.
+B) Apenas II.
+C) Apenas III.
+D) Apenas II e III.
+E) I, II e III.
+
+Para pensar:
+De acordo com a Teoria de Sistema de Tipos, classifique a função a seguir:
+int soma(int x, int y) {
+ return x+y;
+}
+A) Função Somadora.
+B) Função Polimórfica.
+C) Função Monomórfica.
+D) Função Sobrecarregada.
+E) Função Abstrata.

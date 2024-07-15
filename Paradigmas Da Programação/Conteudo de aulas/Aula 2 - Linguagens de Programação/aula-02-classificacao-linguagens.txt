@@ -1,0 +1,154 @@
+Paradigmas de Programação - Aula 2
+
+* Dúvida: prazo para as atividades.
+* SIGAA Atualizado.
+* Contribuições sobre avaliação?
+* Revisão:
+	- Plano de ensino
+	- Linguagens de programação
+
+* Características Desejáveis em Linguagens de Programação (Critérios de Evolução):
+	- Confiabilidade
+	- Robustez
+	- Tolerância a Falhas
+	- Facilidade de Aprendizado
+	- Portabilidade
+	- Reusabilidade
+	- Legibilidade
+
+* O que influencia o projeto das linguagens?
+	Obs.: influência é o que produz algum efeito, seja ele positivo ou negativo.
+	- Arquitetura e Organização de Computadores (Modelo de von Neumann)
+	- Metodologias de Projeto de Programação
+
+* Classificação de linguagens de programação
+	Sebesta discute classificações de linguagens, e menciona uma frequente classificação:
+	- Imperativa
+	- Orientada a Objetos
+	- Funcional
+	- Lógica
+
+* Exemplos de ferramentas necessárias
+	- DevC++
+	- ghci
+	- prolog
+	- IDE Java
+	- nasm
+	- sh, zsh, bash
+	- gcc
+	Serviços on-line:
+	- https://www.tutorialspoint.com/codingground.htm 
+	- https://www.codechef.com/ide 
+	- https://www.onlinegdb.com/ 
+	- https://www.jdoodle.com/ 
+	- https://repl.it/languages/ 
+	Obs.: outras ferramentas podem ser necessárias.
+
+* Arquitetura de Computadores
+
+Figura 1.1 (Sebesta)
+
+Comentamos que a arquitetura de computadores influencia o projeto de linguagens de programação. Essa influência se dá através de
+	- modelagem de células de memória por meio de variáveis;
+	- transmissões de dados, por meio das atribuições;
+	- repetições iterativas, porque as instruções ficam em posições contíguas da memória;
+	- dados e expressões transmitidos entre CPU e memória
+	- uma ação denominada ciclo de busca e execução, carregando o programa da memória na CPU, instrução por instrução, armazenando o endereço de memória da próxima instrução e executando a instrução atual.
+
+* Métodos de implementação (compilação, interpretação, híbrido)
+
+A linguagem de máquina do computador é seu conjunto de instruções. O projeto da linguagem de máquina implementa em hardware uma linguagem de baixo nível que fornece as operações primitivas mais comumente necessárias (as mais básicas) e requer software de sistema para criar uma interface para programas em linguagens de nível superior. Essa interface é conhecida como Sistema Operacional.
+
+O Sistema Operacional se responsabiliza por gerenciar recursos do sistema, operações de entrada e saída, oferecer um sistema de arquivos, editores de texto e diversas outras ferramentas. Como os sistemas de implementação de linguagem precisam de muitos recursos do Sistema Operacional, eles se comunicam com o Sistema Operacional em vez de fazê-lo diretamente com o processador (em linguagem de máquina).
+
+Tanto o Sistema Operacional quanto as implementações de linguagens de programação representam camadas de abstração que podem ser vistas, neste contexto, como computadores virtuais. Cada camada mais externa tem nível de abstração mais alto. Ver fig. 1.2 de Sebesta.
+
+Cada sistema de implementação de linguagens de programação tem suas próprias características. Em geral os sistemas de implementação costumam ser classificados em compilados, interpretados e híbridos.
+
+Observação importante: embora costumemos classificar as linguagens desta forma, o correto é dizer que estas são propriedades das implementações. Muitas linguagens possuem somente uma forma de implementação, simplificando a discussão. No entanto, o correto é referir-se à implementação, e não à linguagem.
+
+** Compilação
+É o processo de tradução do código-fonte para linguagem de máquina.
+	* Na compilação se traduz uma vez e executa n vezes.
+	* Passa por otimização.
+	* A execução é mais rápida.
+
+Exemplo: (salvar como aula2.c)
+
+#include <stdio.h>
+void main() {
+	printf("Hello, world!\n");
+}
+
+# Compilar o código:
+gcc aula2.c
+
+A partir daí, basta executar o arquivo de saída, não sendo necessário compilar novamente, a menos que o código-fonte seja novamente alterado.
+
+** Interpretação
+É o processo de execução no qual a tradução do código-fonte ocorre instrução por instrução.
+	* Na interpretação, traduz-se uma vez e executa uma vez.
+	* É mais flexível.
+	* A depuração é mais fácil.
+	* As mensagens de erro são mais precisas.
+	* Analisa o código mais rápido, mas executa mais lento.
+
+Exemplo:
+> R
+> x <- c(1,500,98,800)
+> mean(x)
+> sd(x)
+
+Sobre as mensagens de erro, veja que interessante os exemplos abaixo, em C e Python:
+C:
+#include <stdio.h>
+void main() {
+	short array[2];
+	array[0] = 10;
+	array[1] = 10;
+	array[2] = 10;
+	printf("%hd\n", array[2]);
+	printf("%hd\n", array[3]);
+}
+
+Python:
+>>> tamanho = 2
+>>> array = [10] * tamanho
+>>> print array[0]
+>>> print array[1]
+>>> print array[2]
+
+Os códigos apresentam erro? Como as ferramentas trataram cada situação?
+
+** Modelos híbridos misturam vantagens da interpretação e da compilação. Ex.: JIT Compiler
+	* Combina interpretação com compilação.
+	* Código é compilado para um bytecode não dependente de arquitetura. A máquina virtual possui um interpretador, que traduz o código instrução por instrução. O JIT compiler só traduz o bytecode interpretado, realizando otimizações no código e o transformando-o em código de máquina dependente de arquitetura.
+	* Quem usa JIT compiler? JVM (Java), CLR (.net), PyPy (Python)...
+
+Linguagens com implementações compiladas: go, haskell, rust, c, c++, c#, lisp...
+Linguagens com implementações interpretadas: php, javascript, r, haskell...
+Linguagens com implementações híbridas: java, perl, c#...
+
+* Recursos e Características de linguagens de programação
+Diversas linguagens diferentes podem resolver os mesmos problemas, mas oferecendo e trabalhando os recursos de formas diferentes. Por exemplo, em programas escritos em C, o gerenciamento de memória é responsabilidade do programador, enquanto programas escritos em C# executam sobre uma máquina virtual que é capaz de gerenciar memória.
+
+A lista abaixo traz alguns recursos disponíveis em linguagens de programação:
+- Coletor de lixo (código de exemplo)
+- Loops rotulados/labeled loops (códigos de exemplo)
+- Goto/jump (código de exemplo)
+- Recursividade (código de exemplo)
+- Regex (código de exemplo)
+- Ponteiros/Referências
+- Polimorfismo
+- Herança
+- Classe
+- Interface
+- Inferência de tipos
+- List comprehension
+- Expressões lambda
+- Paralelismo e Concorrência
+- Mônadas
+
+Principal referência: Livro do Sebesta.
+
+Sugestão: realizar os exercícios do cap. 1 do livro do Sebesta.

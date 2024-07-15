@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Exemplo Regex</title>
+	<style>
+form  {
+	display: table;
+}
+div {
+	display: table-row;
+}
+label {
+	display: table-cell;
+}
+input {
+	display: table-cell;
+}
+	</style>
+</head>
+<body>
+<form>
+	<div>
+  	<label>CPF:</label>
+  	<input type="text" name="cpf" pattern="[0-9]{11}" title="Digite seu CPF (somente números)" autofocus>
+  </div>
+  <div>
+  	<label>Senha (tipo 1):</label>
+  	<input type="password" name="senha" pattern=".{4,}" title="Sua senha deve ter pelo menos 4 caracteres">
+  </div>
+  <div>
+  	<label>Senha (tipo 2):</label>
+  	<input type="password" name="senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Sua senha deve conter pelo menos uma letra minúscula, uma letra maiúscula, um número e pelo menos 6 caracteres">
+  </div>
+  <div>
+  	<input type="submit" value="Enviar">
+  </div>
+</form>
+</body>
+</html>

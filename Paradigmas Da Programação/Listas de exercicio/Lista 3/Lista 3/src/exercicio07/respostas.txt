@@ -1,0 +1,18 @@
+7. a) Quando o código é executado é exibido 10. Lamp1 e lamp2 fazem referência 
+ao mesmo objeto, então a condição será verdadeira, porém o i só será incrementado após a exibição.
+
+b) Nada será exibido, porque por mais que lamp1 e lamp2 possuam os mesmos valores eles são objetos
+diferentes e possuem referências diferentes. Como o operador == compara referências a condição será
+falsa e nada será exibido.
+
+c) O valor de i será 11, pois a condição é verdadeira.
+
+d) O valor de i continuará sendo 10, já que ele não vai ser alterado porque a condição 
+lamp1 == lamp2 é falsa.
+
+e) Esquerda: Como lamp1 e lamp 2 são referências ao mesmo objeto, qtguando modificar lamp1 também estará modificando
+lamp2. Por isso que quando forem mostradas as informações da lamp2 o tipo dela será 'Halógena'.
+
+Direita: no código da direita lamp1 e lamp2 são objetos diferentes, então quando lamp1 for alterada
+isso não afetará lamp2. Portanto, lamp2.mostrarInformacoesGerais() mostrará as informações de lamp2,
+que ainda vai ser do tipo 'LED'.

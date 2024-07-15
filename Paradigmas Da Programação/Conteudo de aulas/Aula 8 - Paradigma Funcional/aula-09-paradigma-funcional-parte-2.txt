@@ -1,0 +1,256 @@
+Paradigma Funcional com Haskell (continuação):
+
+* Revisão:
+	- Paradigma Funcional
+	- Linguagem Haskell
+	- Comandos básicos e uso do GHCi
+	- Operadores básicos
+	- Criação e manipulação de funções
+	- Introdução a listas e tuplas
+	- Exercícios
+
+(POSCOMP 2010) Com base nos conhecimentos sobre as linguagens de programação funcionais, considere as afirmativas a seguir.
+I. Uma linguagem de programação funcional tem o objetivo de imitar as funções matemáticas, ou seja, os programas são definições de funções e de especificações da aplicação dessas funções.
+II. Nas linguagens funcionais, os dados e as rotinas para manipulá-los são mantidos em uma mesma unidade, chamada objeto. Os dados só podem ser manipulados por meio das rotinas que estão na mesma unidade.
+III. As rotinas de um programa do paradigma funcional descrevem ações que mudam o estado das variáveis do programa, seguindo uma sequência de comandos para o computador executar.
+IV. A linguagem Lisp é um exemplo do paradigma funcional de programação.
+Assinale a alternativa correta.
+a) Somente as afirmativas I e IV são corretas.
+b) Somente as afirmativas II e III são corretas.
+c) Somente as afirmativas III e IV são corretas.
+d) Somente as afirmativas I, II e III são corretas.
+e) Somente as afirmativas I, II e IV são corretas
+
+(POSCOMP 2014) Sobre linguagens puramente funcionais, considere as afirmativas a seguir.
+I. Programas são definições de funções e de especificações de aplicações dessas funções. A execução desses programas consiste em avaliar tais funções.
+II. A avaliação de uma função sempre produz o mesmo resultado, quando invocada com os mesmos argumentos.
+III. A passagem de parâmetros para uma função pode ocorrer de duas formas: por valor ou por referência.
+IV. O estado interno de uma função é definido por seus parâmetros formais e por variáveis locais estáticas. Estas últimas podem armazenar valores calculados em invocações anteriores da função.
+Assinale a alternativa correta.
+a) Somente as afirmativas I e II são corretas.
+b) Somente as afirmativas I e IV são corretas.
+c) Somente as afirmativas III e IV são corretas.
+d) Somente as afirmativas I, II e III são corretas.
+e) Somente as afirmativas II, III e IV são corretas.
+
+* Haskell permite utilizar a estrutura condicional com if e guardas:
+	if ExpressãoBool then Expressao1 else Expressao2
+	guardas
+		| ExpressaoBool1 = Expressao1
+		| ExpressaoBool2 = Expressao2
+		| ExpressaoBool3 = Expressao3
+		| ...
+		| ExpressaoBooln = Expressaon -- esta última pode ser substituída por otherwise (caso contrário)
+
+* Exemplo: criar uma função que verifica o sinal de um número. A função deve retornar 1, se positivo, -1, se negativo, e 0 se for neutro (se o número for igual a zero).
+	- Em um arquivo .hs, acrescente a definição da função "sinal":
+	sinal x = if x < 0 then -1 else if x > 0 then 1 else 0
+
+	- Abra o terminal no mesmo diretório em que o arquivo está e abra o GHCi.
+	- Carregue o arquivo com :l nomedoarquivo.hs e execute a função das três formas possíveis:
+	> sinal 9
+	> sinal 0
+	> sinal (-9) -- o valor precisa estar entre parênteses
+
+	- Outra implementação válida para a mesma função, mas utilizando guardas:
+	sinal2 x
+		| x > 0 = 1
+		| x < 0 = -1
+		| otherwise = 0
+
+	- Exemplos no arquivo Paradigma-Funcional-Parte-2.hs:
+		- sinal e sinal2:
+			sinal x = if x>0 then 1 else if x<0 then -1 else 0
+			sinal2 x
+			   | x>0 = 1
+			   | x<0 = -1
+			   | otherwise = 0
+		- mdc:
+			mdc a b
+			   | a>b = mdc (a-b) b
+			   | a<b = mdc a (b-a)
+			   | otherwise = a
+		- fatorial1, fatorial2, fatorial3 e fatorial4:
+			fatorial1 n = product [1..n]
+			fatorial2 n
+			   | n==0 = 1
+			   | otherwise = n * fatorial2 (n-1)
+			fatorial3 0 = 1
+			fatorial3 n = n * fatorial3 (n-1)
+			fatorial4 n = if n==0 then 1 else n * fatorial4 (n-1)
+	
+	- Exercício: declarar uma função para retornar o n-ésimo termo da sequência de Fibonacci: 0, 1, 1, 2, 3, 5, 8...
+
+		- Respostas válidas:
+			fibonacci :: Integer -> Integer
+			fibonacci 0 = error "O n-ésimo valor da sequência deve ser maior que zero."
+			fibonacci 1 = 0
+			fibonacci 2 = 1
+			fibonacci n = fibonacci (n-1) + fibonacci (n-2)
+
+			fibonacci2 n
+			   | n == 0 = error "O n-ésimo valor da sequência deve ser maior que zero."
+			   | n == 1 = 0
+			   | n == 2 = 1
+			   | otherwise = fibonacci2 (n-1) + fibonacci2 (n-2)
+
+* Let
+Let (seja) é uma palavra reservada na linguagem Haskell - e em outras linguagens funcionais - para definir declarações aninhadas. A expressão tem escopo definido à direita da declaração, isto é, o valor do parâmetro será utilizado somente nas expressões ali definidas.
+	- Exemplos:
+		> let x = 4 in x + 9
+		> let x = (-8) in sinal x
+		> let a = 5; b = 171 in mdc a b
+		> let n = 5 in fatorial1 n
+	- Ouando usar o let?
+	- Quando o valor testado será aplicado em vários pontos das expressões definidas. Veja no exemplo a seguir:
+		> let x = (-99) in x + 19 - x^2 + 99 - x * 3 - (x `mod` 99)
+	- Temos uma expressão grande em que o valor -99 precisaria substituir "x" em todas as suas ocorrências (são quatro).
+	- valeria a pena repetir o valor (-99) quatro vezes? E depois, se o teste for realizado com o valor 33? O que é mais prático?
+
+	- Relembrando:
+		- Funções podem ser utilizadas na forma infixa, como um operador. Ou seja, x `mod` 99 é válido; e
+		- Operadores também podem ser usados como função, de forma pré-fixa:
+			> (*) 9 10
+			> (==) 1 9
+			> (+) 3 1
+
+* Exercícios:
+	1) Crie a função "maioridade n" (maioridade :: Int -> Bool), que deve retornar True se o valor de n for maior ou igual a 18 e False caso seja inferior. Exiba uma mensagem de erro se o valor informado for negativo. Faça o exercício utilizando guardas.
+	2) Resolva o exercício acima utilizando ifs.
+	3) Teste as duas funções com e sem let.
+	4) Crie a função modulo x (|x|), que tira o sinal do número.
+
+* Listas
+	- Listas são conjuntos homogêneos de dados, ou seja, todos os dados da lista têm o mesmo tipo.
+	- Exemplos:
+		> [1, 2, 3]
+		> :t [1, 2, 3]
+		-- Poderia ser criada assim:
+		> [1..3]
+		> []
+		> [True, 1==2, False]
+		> "Ricardo"
+		> 1:2:[]
+		> [1] ++ [2]
+		> ('a':'b':[] == "ab") == ('a':'b':[] == ['a', 'b'])
+		> :t [1,2,4.9, 5.004, pi]
+		> "A" < "a"
+		> 'R':'i':"card" ++ ['o']
+
+	- O operador : constrói listas:
+		> 1:[]
+
+	- O operador ++ concatena listas:
+		> [1] ++ []
+		> [1, 2] ++ [3, 5] ++ [8, 9]
+
+	- A ordem dos elementos da lista faz diferença:
+		> [3,4] == [4,3]
+		> [3,4] == [3,4]
+
+	- Criando uma lista por intervalo:
+		> [-10..10]
+		> [2,4..20] -- e se fosse até o 21?
+		> [1,3..20]
+		> [100,10..] -- o que será que vai acontecer aqui?
+
+	- Toda lista pode ser dividida em (x:xs), onde x é a cabeça (head) e xs é a cauda (tail).
+	- Veja os exemplos headLista e tailLista. Obs: com as funções headLista e tailLista acabamos de criar as próprias funções head e tail, já existentes na linguagem.
+		headLista [] = error "Lista vazia!"
+		headLista (x:xs) = x
+
+		tailLista [] = error "Lista vazia!"
+		tailLista (x:xs) = xs
+
+	-Como implementar, sem o apoio de outras funções já definidas:
+		- tamLista, função que deve receber uma lista e informar quantos elementos ela tem?
+		- trocaPorZero, função que deve trocar todos os valores da lista por zero?
+		- triplicaValores, função que deve triplicar todos os valores da lista?
+
+* Compreensão de Lista (List Comprehension)
+	- Declara uma lista em notação inspirada na notação de conjuntos (DU BOIS, s.d.).
+	- Recurso disponível também em outras linguagens
+	- Exemplos:
+		> [ x | x <- [0..100], x `mod`2 == 1 ] -- que lista é essa?
+(***)	> [ 2*x | x <- [0..10]] 
+		> [ toLower x | x <- "Ricardo de la Rocha Ladeira", isUpper x]
+	- A primeira parte da declaração consiste no mapeamento: pegando o exemplo (***), seria 2*x
+	- A segunda parte, após o pipe, indica a que conjunto de entrada a variável pertence: pegando o exemplo (***), seria x <- [0..10]. Este trecho também pode ser chamado de gerador (DU BOIS, s.d.).
+	- A terceira parte, após a vírgula, indica qual será a filtragem realizada (o predicado). Esta parte é opcional, por isso não está presente em (***).
+	
+* Funções de alta ordem
+	- Já que funcionam como um dado qualquer, funções podem também receber funções como parâmetro ou retornar funções.
+	- As funções que recebem funções como parâmetro ou retornam funções são ditas de alta ordem ou de ordem superior (high order functions);
+	- Algumas funções de alta ordem conhecidas são filter, map, foldr, foldl, flip e zipWith.
+	- Filter: a função filter recebe um predicado e uma lista e faz uma filtragem na lista com base no predicado*.
+
+	* Nota de rodapé: lembrando da aula sobre o paradigma lógico, predicado é uma função cujo contradomínio é um conjunto formado por dois elementos: verdadeiro e falso.
+
+	- Neste caso, o predicado (representado por uma função) será aplicado a cada elemento da lista, realizando assim o filtro e retornando uma nova lista.
+	- Exemplo:
+		filtraMenores _ [] = []
+		filtraMenores n xs = filter (< n) xs
+
+	- A função filtraMenores, definida acima, recebe um número e uma lista. Ela usa a função filter para definir se cada elemento da lista é menor que o valor n, informado como parâmetro.
+	- Exemplos de uso:
+	> filtraMenores 4 [1,2,3,4,5]
+	[1,2,3]
+	> filtraMenores 3 [2..99]
+	< [2]
+	- É possível usar a função filter diretamente. Por exemplo:
+	> filter (<4) [2..190]
+	[2,3]
+
+	- Map: realiza o mapeamento de uma função recebida como parâmetro a cada elemento de uma lista também recebida como parâmetro.
+	- Exemplo:
+	> map (+1) [1,2,3]
+	[2,3,4]
+	> import Data.Char
+	> map chr [82,105,99,97,114,100,111] -- O que faz esta chamada à função map?
+	- map e filter são casos especiais de funções mais gerais chamadas de fold.
+
+	- Exemplo de uso de map em um desafio de segurança:
+	- 112 100 60 59 69 60 107 100 93 56 75 96 89 58  105 42 41 35 38 40 110 101 92 93 94 90 90 40 41 25 27 58 94 94 62 59 60 25 100 110 105 91 85 108 101 89 91 85 92 91 112 85 107 105 87 100 90 101 85 104 91 102 98 87 89 91 34 22 103 107 91 22 102 91 104 105 95 105 106 91 100 89 95 87 85 91 95 100 23 57 87 105 101 85 106 91 100 94 87 85 107 105 87 90 101 85 90 91 85 87 98 93 107 99 87 85 92 101 104 99 87 85 87 85 106 87 88 91 98 87 85 87 105 89 95 95 48 99 107 95 106 101 85 88 91 99 85 102 91 100 105 87 90 101 25 58 91 85 106 101 90 87 85 92 101 104 99 87 34 22 87 103 107 95 85 108 87 95 85 105 107 87 85 92 98 87 93 48 85 90 91 105 87 92 95 101 55 105 89 95 95 62 73 85 80 39 46 41 42 60 58 42 27 92 105 70 101 65 57 108 91 41 32 41 32 60 25 88 94
+
+	- Como ficaria a implementação da função triplicaValores utilizando map?
+	- Como repetir este código utilizando filter?
+	> [ toLower x | x <- "Ricardo de la Rocha Ladeira", isUpper x]
+
+	- Resposta: map (toLower) (filter (isUpper) "Ricardo de la Rocha Ladeira")
+
+* Definir tipo:
+	type String = [Char]
+	type Nome = String
+	type Nota = Float
+	type Idade = Int
+
+	- Exemplos: verNota e verNome:
+		verNota :: (Nome, Nota) -> Nota
+		verNota (a, b) = b
+		verNome :: (Nome, Nota) -> Nome
+		verNome (a, b) = a
+
+	- Exercício: criar a função verIdade (verIdade :: (Nome, Nota, Idade) -> Idade)
+
+(POSCOMP 2012) Em linguagens de programação declarativas, em especial aquelas que seguem o paradigma funcional, a lista é uma estrutura de dados fundamental. Uma lista representa coleções de objetos de um único tipo, sendo composta por dois elementos: a cabeça (head) e o corpo (tail), exceto quando está vazia. A cabeça é sempre o primeiro elemento e o corpo é uma lista com os elementos da lista original, excetuando-se o primeiro elemento. O programa Haskell, a seguir, apresenta uma função que utiliza essa estrutura de dados.
+
+poscomp :: [Int] -> [Int]
+poscomp [] = []
+poscomp [x] = [x]
+poscomp (a:b:c)
+   | a > b = b : (a : poscomp c)
+   | otherwise = a : (b : poscomp c)
+
+Uma chamada a esta função através da consulta poscomp [5,3,4,5,2,1,2,3,4] produzirá o resultado:
+
+a) [1,2,2,3,3,4,4,5,5]
+b) [3,5,4,5,1,2,2,3,4]
+c) [5,3,4,5,2,1,2,3,4]
+d) [5,4,3,2,1]
+e) [5,3,4,2,1]
+
+* Lista 6.
+
+* Referências
+- DU BOIS, Andre Rauber. Programação Funcional com a Linguagem Haskell. Disponível em: http://www.inf.ufpr.br/andrey/ci062/ProgramacaoHaskell.pdf. Acesso em: 23 nov. 2020.
+- Livro do SEBESTA.

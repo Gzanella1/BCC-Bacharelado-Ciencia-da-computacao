@@ -1,0 +1,192 @@
+Paradigmas de Programação - Aula 3
+
+* Sistemas de Tipos
+
+- Regras que atribuem tipo aos recursos da linguagem, tais como:
+	* Condições
+	* Expressões if
+	* Variáveis
+	* Constantes
+	* Parâmetros
+	* Retorno de métodos
+	* Registros
+	* Estruturas de dados
+- Um tipo possui um conjunto de valores e operações possíveis.
+
+- Qual é o maior e o menor valor inteiro (Integer) em Java?
+2^32
+-(2^31)
++(2^31)-1
+
+- Sistemas de tipos existem (ou deveriam existir) para impedir ou reduzir erros e inconsistências nas interações entre recursos da linguagem.
+
+- Um sistema de tipos pode ser monomórfico ou polimórfico.
+
+	* Monomórfico: para cada recurso da linguagem deve ser declarado um tipo específico. Por exemplo: double raizQuadrada(double numero).
+		- Neste caso, tanto o parâmetro quanto o tipo de retorno são do tipo double, ou seja, recebe um double e avalia a expressão para um double:
+			double -> double
+
+	* Polimórfico: um recurso é dito polimórfico se ele funciona para vários tipos diferentes. Assim, é possível escrever funções genericamente. Exemplos:
+		- função segundo(A, B) = B.
+		Neste caso, independentemente do tipo dos parâmetros recebidos, a função retornará sempre o segundo valor.
+		- função identidade(X) = X.
+		Neste caso, independentemente do tipo dos parâmetro X, sempre retornará X.
+		- função len/length(L) = int.
+		Neste caso, a função pode receber uma lista com valores de qualquer tipo, informando um inteiro que represente a quantidade de elementos desta lista, independente de seu tipo.
+
+	* Polimorfismo ad-hoc: refere-se a quando um valor é capaz de adotar um entre vários tipos. Há autores que definem polimorfismo ad-hoc como sinônimo de polimorfismo de sobrecarga. Outros definem que polimorfismo ad-hoc é uma classe que contém os polimorfismos de sobrecarga e de coerção.
+		- Polimorfismo de sobrecarga é aquele em que se usa o tipo e escolhe a definição a ser aplicada.
+		- Exemplo: operador "+", pode ser aplicado entre valores inteiros, reais e, em algumas linguagens, entre strings. Assim, usando int x = a + b, usamos o tipo int e assim dissemos que o operador + trabalhará com inteiros.
+		- Por possuir definições diferentes para tipos diferentes, diz-se também que o operador + foi sobrecarregado. É comum também ler a expressão "Polimorfismo de sobrecarga" ou overloading.
+		- Polimorfismo de coerção é aquele em que há conversão explícita do tipo. Nele usa-se a definição e se escolhe o tipo de conversão.
+		- Exemplo: double x = 2.2 + (double) 2;
+
+- Coerção: Também chamada de casting, a coerção é, Segundo Moura (S.d.), a conversão implícita de valores de um tipo para outro.
+	* Exemplos:
+		Converter um valor inteiro para real: -2 = -2.0.
+		Converter uma string para uma lista de caracteres.
+		Converter valores inteiros para booleanos (lógicos).
+
+	* Pensando nessas conversões entre tipos, é natural pensar que há tipos cujo conjunto de valores está dentro de outro(s) tipo(s). Por exemplo, se mapearmos o inteiro zero como "false" e o inteiro um como "true", estamos definindo que o subtipo lógico ou booleano está contido no tipo inteiro.
+
+	* Por exemplo, se em determinada linguagem de programação o tipo inteiro é representado por 32 bits, assumimos, portanto, que ele representa valores entre -2^31 e 2^31-1. Se, nessa mesma linguagem, o tipo short (ou short int) é capaz de representar valores entre -2^15 e 2^15-1, então o tipo short é um subtipo de int. Além disso, se um tipo bool (lógico) for representado pelos valores 0 e 1, ele pode ser considerado um subtipo de short.
+
+	* Assim, se uma variável do tipo int receber um valor short ou bool, diz-se que esta conversão é segura, pois sabe-se que o valor atribuído é sempre um inteiro.
+
+	* Por outro lado, se uma variável do tipo bool receber um valor int, é necessário verificar em tempo de execução se o valor recebido é do tipo bool.
+
+Curiosidade:
+Vejam como JavaScript trabalha operações com tipos diferentes:
+true+9
+true+10-8*"Ricardo"
+true+10-8*"9"
+true+10-8*"9" == -61
+true+10-8*"9" === -61
+typeof "9"
+typeof true
+NaN == NaN
+typeof NaN
+
+Um exemplo em Python:
+True+10-8*"9"
+
+Um exemplo em PHP (sugestão: rodar em https://www.w3schools.com/php/phptryit.asp?filename=tryphp_compiler):
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>Sistema de tipos - PHP</title>
+<meta charset="utf-8">
+</head>
+<body>
+<?php
+$message1 = "PHP" . " possui tipagem fraca";
+echo $message1;
+echo "<br>";
+$message2 = true + 2;
+$message3 = $message2 . " é igual a 3";
+echo $message3;
+echo "<br>";
+echo $message2 + "90";
+echo "<br>";
+$message3 = 1 + 2 == "3";
+echo $message3;
+?>
+</body>
+</html>
+
+- Os sistemas de tipos são classificados, tipicamente, sob dois aspectos: tipagem estática/dinâmica e tipagem forte/fraca.
+	
+	* Estática: a escolha do tipo ocorre em tempo de compilação, estaticamente. A vinculação do tipo pode ser feita de forma explícita ou implícita.
+
+		- Explícita: especifica a variável informando o tipo dela.
+			Exemplo em C: int a, b, c;
+
+		- Implícita: associa o recurso (a variável) a um tipo com base em uma convenção padrão. A primeira vez que a variável aparece no código representa sua declaração.
+			Exemplo em  FORTRAN:
+			I, J, K, L, M, N:  INTEGER 
+                               otherwise REAL
+        	* As declarações implícitas para variáveis em linguagens estaticamente tipadas foram praticamente abandonadas. No entanto, ainda vemos isso em declarações de funções em linguagens como C. Exemplo no arquivo declaracao-implicita.c:
+#include <stdio.h>
+
+void fun(); // descomente esta linha!
+int main() {
+
+	fun();
+
+	return 0;
+}
+
+void fun() {
+	printf("Apenas um comando de escrita\n");
+}
+
+> gcc declaracao-implicita.c -o decl
+
+			* Ao comentar a linha "void fun();", vemos que o compilador exibe um warning de declaração implícita. Como diz a definição de declaração implícita, o recurso, que aqui é a função, é associado a um tipo convencionado por padrão, que, neste caso, é o tipo int. Embora C seja estaticamente tipada, o compilador consegue executar a função porque o endereço dela permanece o mesmo. No entanto, seu comportamento é indefinido e em compiladores mais antigos o programa pode travar.
+
+			* Comportamentos inesperados prejudicam a confiabilidade do programa, pois tornam os erros difíceis de diagnosticar. Uma boa prática para impedir que um código em C seja compilado com declarações implícitas é incluir o parâmetro -Werror=implicit-function-declaration:
+			> gcc declaracao-implicita.c -Werror=implicit-function-declaration -o decl
+
+			* Declarações implícitas são vistas em linguagens de tipagem dinâmica. Exemplo em Python: (...) x = 5 (...).
+
+		- Exemplos de linguagens com tipagem estática: 
+			* C,
+			* C++,
+			* Java,
+			* Haskell.
+	
+	* Dinâmica: a vinculação do recurso com seu tipo não é feita por uma instrução de declaração e a escolha do tipo ocorre em tempo de execução. Isso permite, por exemplo, que um mesmo identificador referencie um valor inteiro em um dado momento, depois receba uma cadeia de caracteres (string) sem que um erro seja produzido. Portanto, o tipo da variável pode mudar muitas vezes durante a execução do programa.
+
+		- Exemplo em Python:
+>>> x = "Nome"
+>>> x
+'Nome'
+>>> x = 19 * 9.8
+>>> x
+186.20000000000002
+>>> x = 19 + 1
+>>> x
+20
+
+		- Exemplos de linguagens com tipagem dinâmica: PHP, Python, Lisp, Ruby, JavaScript.
+	
+	* Forte: restrições impedem operações com resultados anômalos, ou seja, a violação às regras de um tipo (por exemplo, utilizar uma operação que o tipo não reconhece) resulta em um erro.
+		- Exemplo: não permitir que ocorra uma operação de soma entre string e int, somente por conversões explícitas.
+		- Exemplos de linguagens com tipagem forte: Haskell, C++, Python, Ruby, Perl.
+	
+	* Fraca: permite operações com tipos diferentes em situações de imprevisibilidade, ou seja, sem uma definição de que comportamento ocorrerá. Ocorrem conversões implícitas de tipos.
+		- Exemplos de linguagens com tipagem fraca: MATLAB, C, PHP, JavaScript.
+	
+	Obs.: a classificação de linguagens em forte/fraca não é algo totalmente aceito na literatura.
+
+- Inferência de tipo: outra forma de declaração implícita de tipos ocorre por meio da inferência de tipos. Neste caso o sistema de tipos é capaz de adivinhar, com base no contexto, o tipo de dados. Ou seja, se há uma instrução em que uma variável ainda não declarada explicitamente e não associada a um tipo recebe um valor, o contexto é o tipo do valor atribuído à variável. Este recurso é utilizado por sistemas de tipos estáticos, ou seja, não é possível alterar o tipo do valor atribuído à uma variável depois (como pode ser feito em Python, por exemplo).
+	* Exemplos de linguagens com o recurso de inferência de tipo: C#, ML, Go, Kotlin e Haskell.
+	* Exemplo em C# (SEBESTA):
+	var sum = 0;
+	var total = 0.0;
+	var name = "Fred";
+	Neste exemplo, sum é um inteiro (int), total é um valor de ponto flutuante (float) e name é uma cadeia de caracteres (string).
+
+* Lista 1: https://docs.google.com/document/d/1T6ZlOstcglqnBPIe7KKAbD5FlAFjGFZbtfD1vE6wBpE/edit?usp=sharing
+
+Poscomp 2016:
+QUESTÃO 28 – Assinale a alternativa que apresenta o nome de uma linguagem de tipagem dinâmica.
+A) Java.
+B) C.
+C) Python.
+D) Pascal.
+E) C#.
+
+Poscomp 2018:
+QUESTÃO 38 – Sobre tipos de dados, é correto afirmar que:
+A) Tipos booleanos são valores que são mantidos fixos pelo compilador.
+B) O double é um tipo inteiro duplo com menor precisão do que o tipo inteiro.
+C) A faixa de valores dos tipos inteiros tem somente dois elementos: um para verdadeiro e outro para falso.
+D) Uma conversão de tipos implícita consiste em uma modificação do tipo de dados executado, automaticamente, pelo compilador.
+E) Vetores, matrizes e ponteiros são exemplos de tipos de dados primitivos (básicos).
+
+Referências:
+Hermano Perrelli de Moura, https://www.cin.ufpe.br/~if686/aulas/tipos.ppt
+https://cseweb.ucsd.edu/classes/sp05/cse130/lecture_notes/types_student.txt
+https://homepages.dcc.ufmg.br/~jefersson/cursos/dcc052/Aula10.pdf
+Livro do Sebesta

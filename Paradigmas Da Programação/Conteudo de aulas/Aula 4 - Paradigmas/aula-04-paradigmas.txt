@@ -1,0 +1,93 @@
+Paradigmas de Programação - Aula 4
+
+Antes de iniciarmos, quais seriam as respostas corretas para as questões abaixo? Elas têm relação com assuntos trabalhados em Paradigmas de Programação.
+
+1) Um procedimento recursivo é aquele que contém em sua descrição:
+A) Uma prova de indução matemática.
+B) Duas ou mais chamadas a procedimentos externos.
+C) Uma ou mais chamadas a si mesmo.
+D) Somente chamadas externas.
+E) Uma ou mais chamadas a procedimentos internos.
+
+2) Códigos de programas podem ser compilados ou interpretados. Referente à compilação e à interpretação de código, assinale a alternativa correta.
+A) Desenvolvedores de linguagens de alto nível utilizam somente linguagens compiladas.
+B) A interpretação do código se caracteriza principalmente pela geração do arquivo executável.
+C) Com uma linguagem interpretada, é necessário ter o código-fonte acessível para que o programa seja executado.
+D) O interpretador converte o programa inteiro, de uma única vez, para linguagem de máquina.
+E) Caso não seja desejável um código-objeto como saída, após o procedimento de tradução ou interpretação da linguagem de alto nível, uma linguagem compilada seria indispensável.
+
+3) (2019/COMPERVE/UFRN/Técnico de TI) Python é uma linguagem de programação de alto nível, interpretada, orientada a objetos, funcional, de tipagem dinâmica e forte. Levando isso em conta, analise o código em Python abaixo.
+
+def e(b):
+	a = b*b
+	return a
+a = 10
+e(a)
+e(a)
+print(e(a))
+
+A) 0
+B) 10
+C) 100
+D) 1000
+E) 10000
+
+* Paradigma
+
+Um paradigma é um modelo, uma forma ou um ponto de vista. É a classificação dada às linguagens de programação com base em recursos e na forma com que eles são oferecidos. Também pode ser visto como uma forma de pensar ou um estilo de programar (LIERET, 2020).
+Conceito amplamente usado (e também criticado).
+Uma linguagem pode pertencer a vários paradigmas. A linguagem que pertence a vários paradigmas é dita multiparadigma.
+
+Existem dois grandes grupos de paradigmas: declarativo e imperativo. Uma forma de classificar os paradigmas está apresentada na Fig. 4.1
+
+(Figura 4.1 Kowalczyk)
+
+Obs.: embora traga uma classificação interessante, a Fig. 4.1 traz XML como linguagem de programação. XML é uma linguagem de marcação.
+
+A Fig. 4.2 traz outra forma de classificar os paradigmas de programação. Nela há também a divisão principal em paradigmas imperativo e declarativo; depois, entre os imperativos, coloca os paradigmas procedural, orientado a objetos e a abordagem de processamento paralelo. Já entre os declarativos, coloca os paradigmas lógico, funcional e a abordagem de processamento de banco de dados.
+
+(Figura 4.2 Derek Austin)
+
+
+Paradigma Declarativo:
+- A programação não é feita definindo a ordem das operações ou o fluxo de controle, mas descrevendo a lógica (LIERET, 2020), fornecendo/declarando as operações disponíveis e as regras às quais estas operações se sujeitam.
+- Este paradigma tem correspondência com a lógica matemática.
+- Os paradigmas lógico e funcional são subcategorias do paradigma declarativo.
+- Exemplos de linguagens: Prolog, LISP, Miranda, Haskell, SQL, Cloujure.
+- Linguagens de marcação e estilização também são declarativas. Como dito, o XML é uma linguagem de marcação e é uma linguagem declarativa. As CSS também são declarativas. Exemplo:
+
+h1 {
+	color: blue;
+}
+
+A regra acima declara (descreve) como deve ser a estilização de elementos h1.
+
+Paradigma Imperativo:
+Do latim: imperare - imperar, reinar, governar, dominar, mandar, ordenar.
+- Modelo em que a programação é feita com comandos que mudam o estado do programa. A programação descreve o fluxo de controle, e é baseada na arquitetura de von Neumann.
+- Características:
+	* Dados e programas são armazenados na mesma memória.
+	* CPU executa instruções.
+- O paradigma orientado a objetos é um exemplo de subcategoria do paradigma imperativo (LIERET, 2020). Sebesta faz a mesma afirmação.
+- Exemplos de linguagens: C, C++, C#, Java, Python.
+- Caracterizam-se por 3 construções: variável, atribuição e sequência.
+- Dividido em estruturado e não estruturado.
+
+	* Paradigma estruturado: reduzido a três estruturas (sequência, decisão e repetição).
+	Essas estruturas especificam os passos necessários para que o programa atinja o resultado esperado.
+	- Surgiram na década de 50, com ALGOL.
+	- Representa a forma "natural" de pensar na solução de problemas.
+	- Exemplos: ALGOL, C, Python, Java.
+
+	* Paradigma não estruturado: possui goto/jump em vez de estruturas de repetição e decisão. É mais difícil de manter e de encontrar erros. Geralmente tem legibilidade comprometida conforme a quantidade de pulos aumenta no programa. É pejorativamente conhecido como "código espaguete". Obs.: códigos que abusam destes desvios mesmo em linguagens que possuem estruturas que as qualificam como estruturadas também podem ser denominados "espaguete".
+	- Exemplos: Linguagens de montagem (assembly), versões mais antigas de linguagens, como COBOL e Fortran, e Scripts Batch.
+
+Paradigma procedural: código contém as três estruturas e tem como unidade básica a função, uma pequena porção de código coesa, permitindo assim decompor um problema maior.
+	- O código é organizável, reusável e modular.
+	- Exemplos de linguagens: C, Python, Basic, Fortran, Perl, PHP.
+
+Referências:
+- AUSTIN, Derek. What Are JavaScript Programming Paradigms? Aug 26, 2019. Disponível em: https://javascript.plainenglish.io/what-are-javascript-programming-paradigms-3ef0f576dfdb. Acesso em: 26 fev. 2024.
+- KOWALCZYK, Robert. Programming Paradigms and Languages. Introduction. [S.d.]. Disponível em: https://slideplayer.com/slide/17199613/. Acesso em 26 fev. 2024.
+- LIERET, Kilian. Programming Paradigms. Disponível em: https://indico.cern.ch/event/853710/contributions/3708306/attachments/1985126/3307454/programming_paradigms_280920_handout.pdf. Acesso em 26 fev. 2024.
+- SEBESTA, Robert W. Concepts of programming languages. Pearson. 10th ed. 2012.

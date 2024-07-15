@@ -1,0 +1,166 @@
+Paradigma Lógico
+
+* Revisão:
+	- Paradigma Orientado a Objetos
+	- Linguagem Java
+	- Exemplos
+	- Exercícios
+
+* Linguagens do paradigma lógico também fazem parte do paradigma declarativo.
+
+* Lembrando, o paradigma declarativo:
+	- É oposto ao paradigma imperativo
+	- Descreve/declara o que um programa faz, e não o seu fluxo de controle/como ele funciona.
+	- Descreve seus resultados desejados sem listar os passos ou a lista de comandos necessários para isso.
+	- Concentra-se em detalhes do problema e abstrai os detalhes de implementação.
+	- Dentro deste paradigma estão o paradigma lógico e o paradigma funcional.
+
+* O paradigma lógico é baseado na lógica formal, especialmente em FATOS e REGRAS que envolvem o domínio em questão.
+* Este conjunto de fatos e regras é chamado de BASE DE CONHECIMENTO.
+* É um paradigma importante para aplicações de inteligência artificial (ex: robótica), SGBDs (Sistemas de Gerenciamento de Bancos de Dados), sistemas especialistas, processadores de linguagem natural, demonstração de teoremas e construção de compiladores.
+
+* FATO: sentença aceita como verdadeira que estabelece um relacionamento entre objetos.
+Exemplos:
+	Todo ser vivo é mortal.
+	Brasil é um país.
+	Blumenau é uma cidade.
+	<tr> é uma tag HTML.
+	A guerra dos cem anos durou mais de cem anos.
+
+* REGRA é a composição de fatos. Define novas relações com base nas relações já existentes.
+Exemplos:
+	João é pai de Otávio.
+	Otávio é pai de Pedro.
+	.:. João é avô de Pedro.
+	.:. Pedro é neto de João.
+
+	Macron governa a França.
+	França é um país.
+	.:. Macron governa um país.
+
+* A linguagem Prolog
+- Prolog significa programming in logic.
+- É a linguagem de programação lógica mais utilizada (SEBESTA).
+- Surgiu na década de 70.
+- Possui uma sintaxe rigorosa quanto ao uso de letras minúsculas, maiúsculas e exige o uso do ponto final.
+- Um programa em prolog é formado por um conjunto de declarações chamadas de cláusulas (fatos e regras), formando a base de conhecimento.
+- Com uma base de conhecimento criada, realizam-se consultas por meio de uma interface.
+- A base de conhecimento é acessada por meio do Motor de Inferências. É este motor que aplica as regras aos fatos, parando a execução quando encontra a solução -- que pode estar implícita -- ou quando não há regra a ser aplicada.
+- Recomenda-se que a base de conhecimento seja completa, pois em prolog adota-se a hipótese de mundo fechado (o que não é explicitamente verdadeiro, assume-se como falso, ou, melhor dizendo, falso é aquilo que não é comprovadamente verdadeiro).
+- A linguagem Prolog possui implementações compiladas e interpretadas desde a década de 70.
+- Em sistemas unix like, a ferramenta utilizada é o "swipl" (SWI-Prolog), também executada pela palavra reservada "prolog".
+- Ambiente on-line para programação com Prolog: https://swish.swi-prolog.org/
+	- Clicando em "Program" é exibida uma tela dividida em três partes: base de conhecimento, consultas e resultados.
+	- A base de conhecimento conterá o conjunto de fatos e regras
+	- A área de consultas é realizada para se fazer perguntas à base de conhecimento, verificando se ela pode provar que a consulta é verdadeira.
+	- A área de resultados exibe os resultados das consultas.
+
+
+A linguagem Prolog funciona da seguinte maneira:
+
+				consulta
+|------------| ---------> |------------| ---------> |------------| ---------> |------------|
+|	USER	 |			  | INTERFACE  |		    | MOTOR INF. |			  |BASE CONHEC.|
+|------------| <--------- |------------| <--------- |------------| <--------- |------------|
+                resposta
+
+Exemplos de FATOS em Prolog:
+	cidade(blumenau). (***)
+	cidade(pelotas).
+	taghtml(tr).
+	país(brasil).
+	país(frança).
+	presidente(bolsonaro, brasil).
+	presidente(macron, frança). // Significado: Macron é presidente da França.
+
+Exemplos de FATOS em linguagem natural e em Prolog:
+	Em linguagem natural	//	Prolog
+	Blumenau é uma cidade  //	cidade(blumenau).
+	SC é um estado			//	estado(sc).
+	Prolog é uma LP			//	lp(prolog).
+
+- Pegando o exemplo (***) e usando a nomenclatura da linguagem Prolog, diz-se que "cidade" é um predicado.
+- Cada valor inserido no predicado é chamado de átomo. 
+- Átomos devem ser escritos em letras minúsculas.
+- No âmbito da matemática, um predicado é uma função cujo contradomínio é um conjunto formado por dois elementos: verdadeiro e falso. Assim, quando uma consulta for feita utilizando aquele predicado, o resultado será verdadeiro ou falso.
+- Variáveis devem ser escritas em letras maiúsculas. Costuma-se utilizar X, Y, Z etc.
+
+Exemplos de REGRAS em Prolog:
+	neto(X,Y) :- pai(Y,Z), pai(Z,X). // Define a relação "neto" em termos da relação "pai".
+						 |
+						 |
+						 |-----> vírgula significa "E" lógico, ponto-e-vírgula significa "OU" lógico.
+
+	Portanto, para X ser neto de Y, é necessário que Y seja pai de Z e Z seja pai de X.
+	As relações neto e pai têm aridade 2 (quantidade de parâmetros).
+
+Com a declaração da regra é possível identificar, em uma base de conhecimento, através de uma consulta, se X é neto de Y.
+
+Criação de uma base de conhecimento:
+1) Digite em um editor de texto simples ou no quadro à esquerda em https://swish.swi-prolog.org/:
+% Isso é um comentário
+cidade(blumenau).
+cidade(pelotas).
+cidade(riogrande).
+cidade(brusque).
+cidade(florianopolis).
+cidade(criciuma).
+cidade(joinville).
+cidade(indaial).
+cidade(timbo).
+2) Se optar pelo editor de texto, salve o arquivo como cidades.pl.
+
+Realização de consultas (verificando se um relacionamento existe):
+1) Se optar pelo terminal, abra-o no diretório em que cidades.pl está salvo e digite "prolog" ou "swipl".
+2) No ambiente swipl, carregue o arquivo cidades.pl digitando [cidades]. (não esqueça que o ponto final é obrigatório).
+Se optar pelo serviço online (https://swish.swi-prolog.org/), inicie pelo passo abaixo:
+3) Realize consultas, por exemplo:
+		?- cidade(capão do leão).
+		?- cidade(joinville). // Joinville é uma cidade?
+	Cada consulta dessas retornará um valor lógico: verdadeiro (true) ou falso (false), caso a cidade faça ou não parte da base do conhecimento, respectivamente. Os símbolos "?-" já vêm inseridos no interpretador.
+	Fatos desconhecidos são assumidos como falsos.
+	Você também pode consultar os valores existentes:
+		cidade(X).
+	Nesta consulta você obterá um valor válido para X. Se quiser mais valores, pressione ";" no swipl ou o botão "next" em https://swish.swi-prolog.org/.
+
+* O swipl é encerrado teclando "halt.".
+
+Outros operadores:
+	?- not(abacaxi==banana).
+	?- not(abacaxi\==banana).
+	?- -3 > 2.
+	?- 4+4^2 =< 24.99.
+
+
+Analisar o arquivo times.pl.
+
+Como realizar uma consulta equivalente às perguntas abaixo?
+1) Que time tem verde na bandeira?
+2) O Grêmio tem vermelho na bandeira?
+
+As respostas seriam:
+?- bandeira(X, verde).
+?- bandeira(gremio, vermelho).
+
+Na primeira resposta, um time que possui verde na bandeira seria exibido. Caso existem mais times, é possível solicitar que o próximo time seja informado. Neste caso, utilizamos o átomo X onde seria escrito um time, assim o programa irá procurar um átomo válido para substituir aquela variável.
+
+Na segunda consulta, basta utilizar os átomos grêmio e vermelho, pois queremos saber se a bandeira do Grêmio tem vermelho.
+
+Outros exemplos: pai.pl e politico.pl.
+
+Prolog permite o uso de um "curinga" no texto. Ele é representado pelo underline (_). Neste caso, qualquer coisa que você digitar no lugar será válida. Por exemplo, considere que temos o fato abaixo em nossa base de conhecimento:
+bairro(_).
+
+Neste caso, ao realizar a consulta e inserir qualquer valor para bairro, a consulta sempre retornará true:
+bairro(araraquara).
+bairro(ricardo).
+bairro(iushdiua).
+
+Desvantagens da linguagem Prolog:
+- A hipótese de mundo fechado, pois Prolog consegue provar o que é verdade, mas não prova o que é falso.
+- Limitações intrínsecas do modelo declarativo: por se preocupar em declarar o que o programa deve fazer, e não como fazer. Por exemplo: como tornar eficiente um processo de ordenação?
+- Para mais informações, leia Sec. 16.7 de SEBESTA.
+
+Referências:
+https://rodrigorgs.github.io/aulas/mata56/aula02-prolog.
+Livro do SEBESTA.

@@ -1,0 +1,106 @@
+Paradigmas de Programação - Aula 1
+
+* Professor
+* Contato: ricardo.ladeira@ifc.edu.br
+* Carga horária e dias de aula
+* Plano de Ensino
+* Cronograma de Aulas
+* Avaliação:
+	exercises && (handout || paper)
+
+* Linguagens de Programação
+
+Conjunto de regras que possibilitam converter um algoritmo em um programa. Contêm:
+	- Instruções (print)
+	- Palavras e símbolos reservados (=)
+	- Regras (while ())
+	- Significado
+	- Sistema de tipos
+	- (...)
+
+* Razões para estudar conceitos de linguagens de programação.
+
+Sebesta afirma que é comum as pessoas acharem que aprender uma ou duas linguagens de programação é suficiente. Uma possível explicação para isso é o fato de que o cientista da computação tem diversos temas relevantes a estudar. O autor enumera benefícios de estudar linguagens de programação:
+	- incrementar a capacidade de expressar ideias, natural ao aprofundar os conhecimentos;
+	- incrementar o conhecimento para escolher linguagens apropriadas;
+	- incrementar habilidades pessoais para aprender novas linguagens. Por exemplo: quem compreende os conceitos de programação funcional tende a ter mais facilidade para aprender Haskell e Miranda;
+	- incrementar o vocabulário técnico, facilitando o entendimento dos conceitos;
+	- conscientização sobre a importância da implementação, permite propor e usar funções otimizadas, identificar bugs etc;
+	- aprimorar o uso das linguagens já conhecidas, pois conceitos estudados podem ser aplicáveis nelas;
+
+http://www.tiobe.com/tiobe_index/index.htm
+https://insights.stackoverflow.com/survey/2020#most-loved-dreaded-and-wanted
+https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted
+	
+* Domínios de programação
+
+Existe uma grande variedade de áreas de aplicações de Computação. Algumas delas são:
+	- aplicações científicas: Fortran, Algol.
+	- aplicações de negócios: COBOL.
+	- inteligência artificial: LISP, Prolog.
+	- programação de sistemas: C, C++.
+	- software web: HTML (marcação), JavaScript, PHP.
+
+* Gerações de Linguagens de Programação: 4-6 (depende do autor)
+	1ª:
+		Linguagem de Máquina: programa é um arquivo binário. É dependente de arquitetura (as operações podem ser diferentes em arquiteturas distintas). Não é legível para humanos.
+	2ª:
+		Linguagem Intermediária/de Montagem: linguagem de programação de baixo nível, ainda dependente de arquitetura. Abreviação: ASM.
+		Também conhecida como Assembly. É legível para humanos.
+section	.text
+	global _start       
+_start:                     
+	mov	edx, len    
+	mov	ecx, msg    
+	mov	ebx, 1	    
+	mov	eax, 4	    
+	int	0x80        
+	mov	eax, 1	    
+	int	0x80        
+
+section	.data
+
+msg	db	'Hello, world!',0xa	
+len	equ	$ - msg	
+
+Execução do código acima:
+> nasm -f elf64 aula1.asm; ld aula1.o -o aula1; ./aula1
+
+	3ª:
+		Linguagem de Propósito Geral: Atuam em vários domínios de aplicação.
+		Exemplos: C, Java, Pascal, Python etc.
+#include <stdio.h>
+void main() {
+	printf("Hello, world!\n");
+}
+
+	4ª:
+		Linguagem de Propósito Específico: Atua em um domínio específico.
+		Exemplos: MATLAB, R, SQL etc.
+> R
+> x <- c(1,500,98,800)
+> mean(x)
+
+> sd(x)
+	* 5ª:
+		Linguagens de Inteligência Artificial: Lógicas e Funcionais (Prolog, Lisp, Haskell...).
+
+	* 6ª:
+		Redes Neurais: Aprendizado de Máquina.
+
+Afirmações:
+	1) Códigos de linguagens diferentes são diferentes?
+	2) Códigos intermediários são diferentes?
+	3) Códigos de máquina são diferentes?
+
+> gcc -c aula1.c -o aula1c.o
+> nasm -f elf64 aula1.asm
+> diff aula1c.o aula1.o
+
+> nasm -f elf64 aula1.asm; ld aula1.o -o aula1nasm
+> gcc aula1.c -o aula1c
+> diff aula1nasm aula1c
+> objdump -S aula1nasm
+> objdump -S aula1c
+
+Principal referência: Livro do Sebesta.

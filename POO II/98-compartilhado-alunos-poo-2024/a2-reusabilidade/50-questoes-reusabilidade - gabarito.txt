@@ -1,0 +1,181 @@
+Exercícios sobre reusabilidade
+
+1) Considere as afirmações a seguir:
+
+I) É sempre mais vantajoso desenvolver software utilizando o paradigma de orientação a objetos. (F)
+
+II) Herança é um recurso que torna o software mais reusável. (V)
+
+III) Orientação a objetos promove o reuso de software. (V)
+
+As afirmações corretas são:
+
+I e II
+I e III
+===> II e III
+I, II e III
+Somente a II
+
+
+
+
+
+
+
+
+
+Considere a seguinte definição: "um conjunto de classes que incorpora um projeto abstrato para soluções de uma família de problemas relacionados". No contexto de programação orientada a objetos, esse conceito designa o seguinte termo:
+
+===> Framework
+Biblioteca
+Pacote
+Toolkit
+Reusabilidade
+
+
+
+
+
+
+A reusabilidade de software não ocorre por acaso. No contexto de programação orientada a objetos, qual das características abaixo NÃO é impactante no projeto de classes reusáveis?
+
+Julgamento
+Experiência
+Experimentação
+===> Linguagem de programação
+Isolamento de características fundamentais de cada classe
+
+
+
+Há um recurso de programação orientada a objetos que aumenta a capacidade de reuso de software, com base na redução do número de termos (vocabulário) necessários ao programador, visto que ações de natureza similar serão nomeadas da mesma forma, em uma mesma classe ou em classes diferentes. Esse recurso permite também que elementos diferentes possam coexistir em estruturas de dados, sendo tratados da mesma forma por um manipulador da estrutura devido ao nome comum que a ação de manipulação possui. Esse recurso é chamado:
+
+Herança
+Encapsulamento
+===> Polimorfismo
+Herança múltipla
+Abstração de dados
+
+
+
+
+
+
+
+
+
+A herança facilita o reuso de software desenvolvido com orientação a objetos. Nesse contexto,qual das características abaixo é FALSA?
+
+Subclasses podem adicionar operações herdadas
+Subclasses podem redefinir operações herdadas
+===> Subclasses podem cancelar operações herdadas
+Superclasses podem ser abstratas
+Superclasses podem ser concretas
+
+
+
+
+
+Considere uma classe chamada Motorista, com os atributos Nome, número de telefone e número da CNH. Há também outra classe chamada Vendedor, que contém os atributos Nome, CPF, número de telefone e percentual de comissão que o vendedor recebe em suas vendas. Forneça uma solução para melhorar a reusabilidade dessas classes.
+
+RESPOSTA: 
+Criar uma classe Pessoa, com os atributos Nome, número de telefone e CPF. Tornar as classes Motorista e Vendedor subclasses de Pessoa, deixando o atributo número da CNH na classe Motorista e percentual de comissão na classe Vendedor. O fato de o atributo CPF existir apenas na classe Vendedor não é impedimento para que esse atributo exista depois, por herança, na classe Motorista. Afinal, todo motorista é uma pessoal, e o CPF é uma informação de alta relevância e utilidade para o cadastro de uma pessoa.
+
+
+
+
+
+
+
+
+A herança permite um recurso de reusabilidade de software conhecido como programação-por-diferença. Forneça um exemplo no qual esse princípio pode ser aplicado.
+
+RESPOSTA:
+Uma classe Pessoa pode ter em seu construtor a validação de CPF para permitir apenas a criação de objetos válidos. Uma subclasse Motorista (filha de Pessoa) pode permitir, por exemplo, o cadastro de uma CNH que seja também válida por algum critério. Sendo assim, o construtor de Motorista deverá invocar o construtor da pessoa (super) e apenas acrescentar a validação da CNH, reutilizando o código de validação da pessoa disponível na classe ancestral.
+
+Na linguagem Java o construtor da classe ancestral é automaticamente chamado quando uma subclasse é instanciada. Já em python, tal fato não ocorre. Veja mais detalhes neste link: http://hylson.com/programar2020/conceitos/programacao2020.html#x1-500004.5.3
+
+
+
+
+
+
+
+
+O mecanismo de polimorfismo pode ser implementado com o reuso do mesmo nome de método diversas vezes na mesma classe, parametrizado de maneiras diferentes, bem como por meio do reuso do nome de método e de sua implementação por meio da herança. Nesse sentido, pode-se dizer que tais mecanismos favorecem a criação de um protocolo padronizado de comunicação entre os objetos. Em termos práticos, isso significa que:
+
+As classes possuem atributos similares
+===> Um objeto pode acionar um método de mesmo nome em objetos de classes diferentes
+Um objeto pode invocar o método de outro objeto
+Duas classes não relacionadas podem conter o mesmo nome de método
+Uma superclasse pode conter os mesmos métodos que uma subclasse contém
+
+
+
+
+
+
+
+
+
+
+Todas as afirmações a seguir são características de classes abstratas, EXCETO:
+
+Não possui instâncias
+Geralmente ocupam o topo de hierarquia de classes
+Geralmente não contém variáveis de instância (atributos)
+Define métodos a serem implementados por subclasses
+===> Contém implementações de construtores polimórficos
+
+
+
+
+
+
+
+Herança e composição são duas possíveis estratégias de organizar classes de forma a favorecer o reuso de software. Considere as classes Cliente e Pedido, elaboradas para que possam ser capturadas informações dos pedidos feitos por um cliente. Qual as opções retrata a melhor opção para modelar a relação entre essas duas classes?
+
+Pedido como superclasse de Cliente, para que os dados do pedido estejam disponíveis na classe Cliente.
+Cliente como superclasse de Pedido, para que os dados do cliente estejam disponíveis na classe Pedido.
+Pedido como variável de instância (atributo) de Cliente, para que as informações do pedido estejam disponíveis ao cliente.
+===> Cliente como variável de instância (atributo) de Pedido, para que as informações do cliente estejam disponíveis no pedido.
+Nenhuma as opções anteriores é capaz de relacionar as classes Pedido e Cliente de forma a armazenar as informações necessárias.
+
+
+A melhor opção é especificar o cliente como atributo de um pedido. Dessa forma, pode haver vários pedidos relacionados a um cliente.
+
+
+
+
+
+
+
+
+
+Assinale a alternativa FALSA sobre aspectos gerais do reuso de software no contexto de programação orientada a objetos:
+
+Manutenção de um sistema é uma forma de reuso de software
+Polimorfismo ajuda na manutenção de software pois reduz a quantidade de software a ser compreendido por novos programadores
+===> O reuso de software em um projeto de sistema ocorre naturalmente quando se utiliza orientação a objetos
+A reescrita de classes antigas visando torná-las mais reusáveis é importante
+Abstrações úteis são construídas a partir de problemas específicos que podem ser aplicados em cenários mais amplos
+
+
+
+
+
+
+
+
+11) Faça um programa que "some" diferentes elementos. Exemplo: casa + banana + algoritmo quicksort (dica: ver slide 27).
+
+RESPOSTA:
+As classes podem expressar a mensagem (método) "soma" em termos do valor financeiro do item. 
+
+12) Busque na internet (ou no chatgpt) exemplo de classe que possua um limiar nebuloso sobre ser subclasse de outra classe (herança) ou fazer parte de outra classe (composição).
+
+13) Cite um exemplo de como você pode tornar uma solução para um problema particular em algo maior e útil em mais situações.
+
+RESPOSTA:
+Um sistema desenvolvido para funcionar para um único usuário pode ser tornado multi-usuário.
+
+FIM

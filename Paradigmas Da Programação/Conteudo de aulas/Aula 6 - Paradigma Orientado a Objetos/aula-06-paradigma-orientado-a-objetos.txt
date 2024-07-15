@@ -1,0 +1,389 @@
+Paradigmas de Programação
+
+* Revisão:
+	- Conceito de Paradigma
+	- Principais paradigmas
+	- Separação de linguagens em imperativas e declarativas
+	- Paradigmas Estruturado e Não Estruturado
+	- Paradigma Procedural
+	- Linguagem C
+	- Exercícios
+
+Antes de iniciar...
+Assinale a alternativa correta em relação ao Paradigma Imperativo de Linguagens de Programação.
+A) Não é baseado na arquitetura de Von Neumann.
+B) É paradigma de linguagens não tipadas.
+C) É paradigma de linguagens orientadas a objeto.
+D) É baseado na arquitetura de Harvard.
+E) Descreve uma sequência de passos que mudam o estado de um programa.
+
+QUESTÃO 27 – Assinale a alternativa correta sobre o Paradigma de Programação Imperativo.
+A) É baseado na arquitetura de Von Neumann.
+B) Nos métodos e nos atributos, também são definidas as formas de relacionamento com objetos.
+C) É baseada na arquitetura MVC (Model-View-Controller).
+D) Não existem procedimentos ou funções.
+E) Fácil legibilidade e manutenibilidade.
+
+Assinale a alternativa que contém uma estrutura de controle que permite que coleções de instruções, na linguagem de programação C, sejam executadas repetidamente com o controle de execução baseado em uma expressão booleana ao invés de um contador.
+A) for
+B) if
+C) while
+D) switch
+E) else
+
+Sobre tipos de dados, é correto afirmar que:
+A) Tipos booleanos são valores que são mantidos fixos pelo compilador.
+B) O double é um tipo inteiro duplo com menor precisão do que o tipo inteiro.
+C) A faixa de valores dos tipos inteiros tem somente dois elementos: um para verdadeiro e outro para falso.
+D) Uma conversão de tipos implícita consiste em uma modificação do tipo de dados executado, automaticamente, pelo compilador.
+E) Vetores, matrizes e ponteiros são exemplos de tipos de dados primitivos (básicos). 
+	
+* Paradigma Orientado a Objetos:
+
+- Baseado no conceito de objetos, estruturas que contêm atributos/propriedades e oferecem métodos/operações, responsáveis por realizar a comunicação dos objetos e alterar os seus estados.
+- Portanto, a resolução dos problemas se dá através da interação entre os objetos, também chamada de troca de mensagens. O que é uma mensagem?
+- A especificação dos objetos é feita na classe, que pode ser comparada a um tipo (ex: int) abstrato de dados.
+- Em 1967 surgiu a primeira linguagem Orientada a Objetos: Simula. Em seguida, em 1972, surgiu a linguagem SmallTalk.
+- Outros exemplos de linguagens do Paradigma Orientado a Objetos: Java, C#, Ruby, Object Pascal.
+- Linguagens com suporte a OO: PHP, JavaScript, Perl...
+- A unidade básica na Programação Orientada a Objetos é a classe.
+- Objetos são instâncias de classes.
+
+- Linguagem vista para demonstrar o paradigma Orientado a Objetos: Java
+- Tipagem estática e forte.
+- Utiliza JIT compiler, que trabalha com compilação e interpretação
+- Amplamente utilizada
+- Suporta operadores aritméticos +/*-%;
+- Suporta pré/pós in/decremento (utilizar com cuidado);
+- Suporta operadores relacionais conhecidos;
+- Suporta estruturas condicionais e de repetição semelhantes a C/C++ (if, switch, while, for, do... while).
+- Suporta operações de "goto" por meio de rótulos, que podem ser chamados em operações de break e continue. A palavra reservada "goto" não deve mais ser usada na linguagem Java.
+- Utiliza modificadores de acesso para definir a visibilidade de seus atributos e métodos: public, private, protected e package (default).
+
+Para iniciar, vejamos o exemplo:
+
+Figura 6.1. Classe Estudante.
+
+O diagrama da Fig. 6.1 é conhecido como Diagrama de Classes, uma notação frequentemente utilizada para modelar a estrutura das classes de um projeto (ou algumas de suas partes) e suas relações. Este diagrama deve ser trabalhado futuramente em disciplinas de Projeto de Software (ex: Engenharia de Software).
+
+O código abaixo, escrito em Java, é válido para modelar a classe do diagrama da Fig. 6.1:
+/* Classe estudante, pública */
+public class Estudante {
+	/* Atributos do estudante
+	o sinal de "menos" no diagrama indica que os atributos são
+	privados. Portanto, só podem ser acessados e manipulados no
+	contexto da própria classe.
+	*/
+	private int matricula;
+	private String nome;
+
+	/* O construtor é um método especial responsável por
+	inicializar o estado interno quando uma instância pra um
+	objeto do tipo Estudante for criado. Quando não é definido,
+	um construtor vazio é criado. Neste caso, criamos
+	explicitamente um construtor vazio. */
+	public Estudante() {}
+
+	/* Métodos em java aceitam sobrecarga. 
+	Desta forma, um método pode conter o mesmo nome que outro
+	definido na mesma classe, mas a assinatura é diferente.
+	Abaixo criamos um construtor diferente para Estudante. */
+	public Estudante(String nome) {
+		this.matricula = 0;
+		this.nome = nome;
+	}
+
+	/* Aqui novamente sobrecarregamos o construtor. */
+	public Estudante(int matricula, String nome) {
+		this.matricula = matricula;
+		this.nome = nome;
+	}
+
+	/* Os métodos da classe Estudante estão abaixo.
+	Os métodos comumente são declarados contendo, na assinatura:
+	- visibilidade
+	- tipo de retorno
+	- identificador
+	- lista de parâmetros
+	O sinal de "mais" no diagrama indica que os métodos são
+	públicos. Portanto, podem ser acessados de qualquer lugar. */
+	public void estudar(int tempo) {
+		if (tempo > 0)
+			System.out.println("Estudando.");
+	}
+
+	public void apresentarTrabalho() {
+		System.out.println("Apresentando.");
+	}
+
+	/* A criação de métodos getters e setters ajuda a padronizar
+	a forma de criação e comunicação com os objetos, bem como esconder
+	os detalhes de implementação da classe. Assim, sabemos que a forma
+	de obter valores é por meio dos métodos get, e a forma de
+	(re)definir os valores é por meio dos métodos set. Não conseguimos
+	definir diretamente nos atributos porque eles são privados. Este
+	princípio de esconder a estrutura interna e fornecer os métodos
+	como interface de comunicação é conhecido como encapsulamento. */
+	public void setMatricula(int matricula) {
+		/* this é uma referência ao próprio objeto. Assim garantimos
+		que não há ambiguidade entre o atributo do objeto
+		(this.matricula) e o parâmetro do método */
+		this.matricula = matricula;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getMatricula() {
+		return this.matricula;
+	}
+
+	public String getNome() {
+		return this.nome;
+	}
+}
+
+
+Para criar objetos "Estudante" e testá-los, criamos uma classe de Teste:
+/* Classe de teste, onde os objetos serão criados e interagirão. */
+public class TestaEstudante {
+
+	/* Função estática, ponto de partida do programa. */
+	public static void main(String[] a) {
+
+		/* Criação de três referências de tipo Estudante. */
+		Estudante aluno1,
+				  aluno2,
+				  aluno3;
+
+		/* Instanciação de três referências a objetos do tipo
+		Estudante. A terceira referência aponta para a segunda. */
+		aluno1 = new Estudante();
+		aluno2 = new Estudante(109443, "Ricardo");
+		aluno3 = aluno2;
+
+		/* Redefinição do nome do objeto por meio do método setNome. */
+		aluno3.setNome("João");
+
+		/* Escreve os dados do objeto aluno2, do tipo Estudante. */
+		System.out.println("O(A) aluno(a) de matrícula "
+			+ aluno2.getMatricula() + " se chama "
+			+ aluno2.getNome() + ".");
+
+	}
+}
+
+- "Estudante aluno1;" é uma referência a um eventual objeto da classe Estudante que pode vir a ser instanciado, tomando como exemplo a sintaxe da linguagem Java.
+- Encapsulamento: controla o acesso aos atributos e métodos, separando a interface e a estrutura interna. O usuário só mexe no que precisa e mudanças internas não alteram a interface. Ex: getters e setters.
+
+É comum encontrarmos versões resumidas de Diagrama de classes. A Fig. 6.2 mostra um exemplo disso.
+
+- Herança: mecanismo de reaproveitamento de código de uma classe mais genérica em outra(s) mais específica(s). Relação "é um". A classe genérica é chamada de superclasse ou classe mãe. A classe específica é chamada de subclasse ou classe filha.
+	Um exemplo de herança: se criarmos as classes quadrado, retângulo e forma geométrica, qual seria a relação de herança entre elas?
+- A herança pode ser simples ou múltipla. Há linguagens que não aceitam herança múltipla e isso só é possível com o uso de interfaces (ex: Java). C++ suporta herança múltipla.
+
+Para demonstrar o mecanismo de herança, vamos elaborar a classe EstudanteBolsista, um tipo específico de estudante. Esse estudante dispõe de todas as propriedades que um Estudante normal, mas ainda tem uma remuneração pela bolsa. Além dos métodos para retornar e atualizar a remuneração, realiza uma ação a mais, pois precisa elaborar relatórios.
+A classe EstudanteBolsista poderia ser assim:
+
+/* A palavra extends diz que EstudanteBolsista herda de Estudante. */
+public class EstudanteBolsista extends Estudante {
+
+	private double remuneracao;
+
+	public EstudanteBolsista(int matricula, String nome, double remuneracao) {
+		/* A chamada ao construtor da classe mãe precisa ser a primeira
+		instrução do construtor da classe filha. */
+		super(matricula, nome);
+		this.remuneracao = remuneracao;
+	}
+
+	public void setRemuneracao(double remuneracao) {
+		if (remuneracao > 0)
+			this.remuneracao = remuneracao;
+	}
+
+	public double getRemuneracao() {
+		return this.remuneracao;
+	}
+
+	public void elaborarRelatorio() {
+		System.out.println("Relatório elaborado.");
+	}
+
+}
+
+E a classe de Teste poderia ser assim:
+/* Importa a classe DecimalFormat. */
+import java.text.DecimalFormat;
+/* Classe de teste, onde os objetos serão criados e interagirão. */
+public class TestaEstudante2 {
+
+	/* Função estática, ponto de partida do programa. */
+	public static void main(String[] a) {
+
+		/* Criação de três referências de tipo Estudante. */
+		EstudanteBolsista aluno1,
+				  aluno2,
+				  aluno3;
+
+		/* Instanciação de três referências a objetos do tipo
+		Estudante. A terceira referência aponta para a segunda. */
+		aluno1 = new EstudanteBolsista(99, "José", 500);
+		aluno2 = new EstudanteBolsista(109443, "Ricardo", 200);
+		aluno3 = aluno2;
+
+		/* Redefinição do nome do objeto por meio do método setNome. */
+		aluno3.setNome("João");
+
+		/* Formata a saída para delimitar as casas decimais. */
+		DecimalFormat formatoMoeda = new DecimalFormat("#.00");
+
+		/* Escreve os dados do objeto aluno2, do tipo Estudante. */
+		System.out.println("O(A) aluno(a) de matrícula "
+			+ aluno2.getMatricula() + " se chama "
+			+ aluno2.getNome() + " e recebe uma bolsa de "
+			+ formatoMoeda.format(aluno2.getRemuneracao()) + " reais.");
+
+	}
+}
+
+- Polimorfismo: muitas formas. Mecanismo através do qual é possível que a subclasses e a superclasse realizem chamadas a métodos de mesma assinatura, mas que possuam comportamentos diferentes. Tipos:
+	- Sobrecarga: métodos com o mesmo identificador, mas assinaturas diferentes.
+	- Coerção: int x=10; double y=x; ("casting" automático).
+	- Inclusão: referência à superclasse, mas instancia a subclasse (País x = new PaísRico();)
+	- De tipo genérico (paramétrico): tipos genéricos/generics (LinkedList<T>)
+
+Imagine, por exemplo, que a classe EstudanteBolsista seja da seguinte forma:
+
+public class EstudanteBolsista2 extends Estudante {
+
+	private double remuneracao;
+
+	public EstudanteBolsista2(int matricula, String nome, double remuneracao) {
+		super(matricula, nome);
+		this.remuneracao = remuneracao;
+	}
+
+	public void setRemuneracao(double remuneracao) {
+		if (remuneracao > 0)
+			this.remuneracao = remuneracao;
+	}
+
+	public double getRemuneracao() {
+		return this.remuneracao;
+	}
+
+	public void estudar(int tempo) {
+		if (tempo > 0)
+			System.out.println("Bolsista estudando.");
+	}
+
+	public void elaborarRelatorio() {
+		System.out.println("Relatório elaborado.");
+	}
+
+}
+
+Qual é a diferença para a anterior? Aqui escrevemos novamente o método estudar. Mas ele já está definido na classe Estudante. A classe de teste pode ser assim:
+
+public class TestaEstudante3 {
+
+	public static void main(String[] a) {
+		
+		/* Desta forma, consigo acessar as referências depois? @__@ */
+		new Estudante(99, "José").estudar(2);
+		new EstudanteBolsista2(109443, "Ricardo", 200).estudar(3);
+	}
+}
+
+Perceba que chamamos o método de mesmo nome para os dois objetos, mas, olhando apenas a classe de teste, não conhecemos as diferenças dos métodos.
+
+Existe ainda o conceito de interface, uma espécie de contrato que garante os métodos que devem ser implementados na classe.
+
+No que diz respeito ao gerenciamento de memória, há áreas distintas de memória para a alocação de cada recurso.
+
+* Pilha: é usada para empilhar, durante a execução, dados de métodos, tais como parâmetros, variáveis locais e valores de retorno. Quando o método retorna, o espaço de memória por ele ocupado é desalocado automaticamente. A pilha utiliza posições contíguas de memória e não é fragmentada.
+
+* Heap: é usada para alocar informações sobre objetos, tais como valores de seus atributos e seu tipo (espaço de objeto), interfaces, classes, suas variáveis estáticas e métodos (espaço estático). Mesmo se não houver referência para um objeto, ele permanecerá no heap até que o coletor de lixo desaloque memória. O heap pode ser fragmentado e alocado aleatoriamente, sem ordem.
+
+Embora o Heap seja um segmento para alocação dinâmica de memória, há uma parte estática chamada de segmento de código ou segmento de dados. Membros estáticos, chamados de membros de classe ou de contexto de classe, ficam onde são alocadas as classes (bytecodes), ou seja, no segmento de dados. É no segmento de dados onde o bytecode Java compilado fica quando ele é carregado.
+
+Ver as Figuras 6.3 (https://www.youtube.com/watch?v=w_xMK1ygPjo) e 6.4 (https://www.csd.uwo.ca/courses/CS1027b/notes/CS1027-010-Memory-W12.pdf).
+
+Exercícios:
+
+O conceito de encapsulamento de programação orientada a objetos pode ser implementado na linguagem Java por meio de
+(A) métodos estáticos (static) e públicos (public).
+(B) métodos públicos (public), privados (private) e protegidos (protected).
+(C) classes abstratas (abstract) e métodos protegidos (protect).
+(D) interfaces (interface), métodos públicos (public) e métodos protegidos (protect).
+(E) herança (extends) e métodos estáticos (static)
+
+De acordo com o diagrama de classes UML, assinale a alternativa que se relaciona diretamente com o conceito de Polimorfismo da Programação Orientada a Objetos.
+Fig-6.5
+A) A relação entre as classes “Veículo” e “Roda”.
+B) O método “solicita_compra()” das classes “Peça” e “Veículo”.
+C) Os atributos “aro: Integer” e “cor: String” da classe “Roda”.
+D) O atributo “nome: String” da classe “Peça”.
+E) O atributo “ano: Integer” da classe “Veículo”.
+
+Considere o seguinte código desenvolvido em Java.
+public class Animal {
+	int numeroPatas;
+ 	public void fale (){};
+}
+public class Cao extends Animal {
+	public void fale() {
+ 		System.out.println ("au au");
+ 	}
+}
+public class Gato extends Animal {
+	public void fale() {
+		System.out.println ("miau");
+ 	}
+}
+public class GatoPersa extends Gato {
+	public void fale() {
+		System.out.println ("miauuuu");
+	}
+}
+public class Tigre extends Gato {
+	public void fale() {
+ 		super.fale();
+ 		System.out.println ("rrrrrr");
+	}
+}
+public class Principal {
+	public static void main(String[] args) {
+ 		Gato gato = new GatoPersa();
+ 		gato.fale();
+ 		Cao cao = new Cao();
+ 		cao.fale();
+ 		Tigre tigre = new Tigre();
+ 		tigre.fale();
+ 	}
+}
+Ao executar o código, a saída impressa no console é:
+(A) miauuuu
+au au
+miau
+rrrrrr
+(B) miauuuuu
+au au
+rrrrrr
+(C) miau
+au au
+miau
+miau
+(D) miau
+au au
+rrrrrr
+(E) miau
+au au
+miau
+rrrrrr
+
+Referências:
+- FIGUEIREDO, Eduardo. Conceitos de Programação Orientada a Objetos. Disponível em: https://homepages.dcc.ufmg.br/~figueiredo/disciplinas/aulas/poo-java_v01-2.pdf. Acesso em: 27 dez. 2023.
+- CAVALHEIRO, Gerson G.H. Material de Apoio 1. Material didático. Universidade Federal de Pelotas. [s.d:s.l.].

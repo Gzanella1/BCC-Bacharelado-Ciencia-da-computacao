@@ -1,0 +1,234 @@
+Paradigma Funcional
+
+* Revisão
+	- Paradigma lógico
+	- Fatos e regras
+	- Prolog
+	- Exercícios
+
+(POSCOMP 2009) Considere as afirmativas abaixo:
+I. Fortran, Pascal e Java são linguagens de terceira geração.
+II. C++ e Java permitem a criação de classes e o uso de herança múltipla.
+III. Prolog é uma linguagem funcional pura.
+IV. PHP, Perl e Ruby são linguagens de sexta geração.
+Assinale a alternativa CORRETA:
+A) Apenas a afirmativa I é verdadeira.
+B) Apenas a afirmativa II é verdadeira.
+C) Apenas a afirmativa III é verdadeira.
+D) Apenas as afirmativas I e IV são verdadeiras.
+E) Apenas as afirmativas II e III são verdadeiras. 
+
+* O paradigma funcional é também um paradigma declarativo.
+* É um paradigma baseado em funções matemáticas e originário de um sistema formal matemático chamado cálculo lambda (cálculo-λ).
+* Este paradigma abstrai questões arquiteturais, e seus programas são legíveis e confiáveis.
+* Não há alocação explícita de memória nem declaração explícita de variáveis. Essas operações ocorrem automaticamente quando a função é invocada.
+* Não há efeitos colaterais no cálculo da função. Uma função matemática sempre define o mesmo valor para os mesmos argumentos. Se f(x,y) = 19 na primeira execução da função, então o resultado será 19 sempre. Isto é chamado de imutabilidade. Nota de rodapé: Há linguagens ditas funcionais em que acontecem exceções assim, tais como ML, que tem matrizes mutáveis (cite SEBESTA).
+	- A imutabilidade favorece o processos de teste. Um resultado obtido no ambiente de desenvolvimento será o mesmo obtido em produção.
+* Loops presentes em outros paradigmas são possíveis através da recursividade.
+* Aplicações:
+	- Ensino (de matemática, por exemplo)
+	- Sistemas financeiros e bancários
+	- Sistemas embarcados
+* Exemplos de linguagens: LISP (1ª), Haskell, ML, Miranda, Clojure, F#, Scheme e Elixir.
+* Atualmente muitas linguagens suportam recursos de programação funcional, como JavaScript, Python, Ruby e C# (cite SEBESTA).
+
+* Cálculo lambda (cálculo-λ) é uma coleção de sistemas formais baseados em uma notação criada por Alonzo Church (HINDLEY & SELDIN, 2008).
+* Em suma, corresponde a uma formalização matemática que expressa toda computação possível.
+* Foi desenvolvido na década de 1930.
+
+FUNÇÃO: Relação matemática que mapeia elementos de um conjunto (domínio) em elementos de outro conjunto (contradomínio).
+
+FUNÇÃO 				APLICAÇÃO
+f(x) = x + x		f(3) = 3 + 3 = 6		3 pertence ao domínio, 6 pertence ao contradomínio.
+g(x) = x + 1		g(5) = 5 + 1 = 6		5 pertence ao domínio, 6 pertence ao contradomínio.
+
+* Linguagem funcional escolhida: Haskell.
+	- Criada em 1990.
+	- Fortemente tipada (vantagem para a linguagem LISP, que é fracamente tipada);
+	- Estaticamente tipada (mas tem o tipo dynamic);
+	- Infere tipos quando estes não são informados;
+	- Parecida com ML, mas permite sobrecarga de funções;
+	- Usadas em SW Comercial (ex: ABN AMRO), com threading, matemáticos, financeiros, CTFs (RUEF et al., 2016);
+	- A idéia principal da linguagem é baseada na avaliação de expressões. A implementação da linguagem avalia (simplifica) a expressão passada pelo programador até sua forma normal (DU BOIS, s.d.).
+
+* Operadores
+	- Relacionais: <, >, <=, >=, ==, /=
+	- Matemáticos: /, +, *, -, **, ^, sqrt
+	- Lógicos: &&, ||, not. Exemplos:
+		2 > 1 && 1 < 2
+		1 > 30 || 30 > 29
+		not(mod 4 3 == 0)
+
+* Tipos em Haskell:
+	- Há diversos tipos em Haskell. Veja a hierarquia de classes completa disponível na Fig 8.1 (HASKELL, 2020). Alguns dos tipos suportados por Haskell são:
+		- Bool (True, False)
+		- Char
+		- Int
+		- Integer
+		- Double
+		- Função (sim, em Haskell uma função pode ser um tipo abstrato)
+			- Em Haskell, funções podem receber outras funções como parâmetro
+			- Também podem retornar uma função
+			- Quando uma função permite uma dessas ações, diz-se que ela é uma função de alta ordem ou de ordem superior
+			- Quando uma função possui parâmetros e resultados que não são funções, ela é dita ser de primeira ordem.
+
+* Ferramentas: GHC, GHCi, Hugs, repl.it (https://repl.it/languages/haskell), www.tryhaskell.org e outras.
+
+* Ao executar a ferramenta GHCi aparece um prompt com o termo "Prelude>". Prelude é o módulo padrão do Haskell. É carregado ao inicializarmos o programa.
+
+* Digite estas expressões (na ferramenta ghci - Compilador Interativo de Haskell):
+		> "Aula"
+		> "Oi" + True -- Erro!
+		> "Oi" + True (o sinal -- indica um comentário!)
+		> sqrt(9^2)
+		> sqrt(9)
+		> 2 /= 4-2
+		> 2 == 4-2
+		> ['A', 'u', 'l', 'a']
+		-- Os colchetes representam listas.
+		> ['A', 'u', 'l', 'a'] == "Aula"
+		> :t "Oi"
+		> "Oi" :: [Char]
+		> :t 2 == 2
+		> :t 2 + 4
+		> :t 2.0 + 4
+		> reverse "Seu nome"
+		> :t reverse "Seu nome"
+		> :t [3, 3.9]
+		> sort [5, 2, 3, 19, 1]
+		-- Não vai funcionar por padrão, é necessário importar uma biblioteca:
+		> import Data.List
+		> sort [5, 2, 3, 19, 1]
+		-- Outra forma abaixo:
+		> Data.List.sort [5, 2, 3, 19, 1]
+		> sort "Seu nome"
+		> "Ricardo" ++ " de la Rocha"
+		-- O que aconteceu ao executar o comando acima?
+		> :q - Comando para encerrar o GHCi
+		> :t (+)
+		(+) :: Num a => a -> a -> a
+		> :t (==)
+		(==) :: Eq a => a -> a -> Bool
+		-- O sinal de => indica uma restrição de classe. Podemos ler o comando anterior como segue: a função igual (==) recebe dois valores do tipo a e retorna um Bool. O tipo desses dois valores deve ser um membro da classe Eq (essa era a restrição da classe). No exemplo anterior, a função soma (+) recebe dois valores do tipo a e retorna um valor do tipo a. O tipo desses valores deve ser u membro da classe Num (essa era a restrição da classe).
+		> :t (9, 'a')
+		> (+) 9 8 -- Usando um operador como função!
+		> 10 `mod` 4 -- Usando uma função como operador! A isto damos o nome de notação infixa.
+		> (<) 'Z' 'z'
+
+Como criar uma função?
+- Abra um editor de texto e digite:
+
+somaTres :: Int -> Int -> Int -> Int -- esta linha nao eh obrigatoria
+-- somaTres :: Integer -> Integer -> Integer -> Integer
+somaTres x y z = x + y + z
+
+- Salve o arquivo como exemplo1.hs
+- A partir do diretório em que exemplo1.hs foi salvo, abra o terminal e execute o ghci
+- Digite:
+	> :l exemplo1.hs
+	-- O comando acima irá carregar o código do arquivo exemplo1.hs. Se estiver tudo OK, execute a função!
+	> somaTres 1 3 4
+
+- Acrescente no arquivo:
+somaDois :: Double -> Double -> Double
+somaDois x y = x + y
+-- O que fazem as 2 linhas acima?
+- Execute a nova função:
+	> :l exemplo1.hs (carregue de novo, pois o arquivo foi atualizado)
+	> somaDois 3 4
+
+- Agora, crie a função abaixo:
+novoSomaDois x y = x + y
+-- De que tipo ela é? Como podemos saber?
+	> :t novoSomaDois
+
+Exercício: crie a função novoSomaTres, em termos de novoSomaDois (ou seja, utilizando novoSomaDois).
+
+Acrescente também a função abaixo no nosso arquivo:
+f = (+) 1
+-- O que faz esta função?
+-- Como utilizamos esta função?
+-- Qual será o retorno dela?
+
+Utilizamos o operador de soma, representado pelo símbolo "+", da forma prefixada. A função "f" acrescentará o valor um ao parâmetro informado.
+A função pode ser utilizada da seguinte maneira:
+> f 9
+10
+O retorno será sempre o nosso parâmetro acrescido de um.
+
+Podemos ainda criar a função como uma tupla:
+soma (a,b) = a + b
+-- Coloque a linha acima no arquivo do exemplo.
+
+- Execute no ghci: soma (8, 9)
+
+Qual é a diferença entre ^ e **?
+
+Listas
+[1 + 23]
+[1 + 23, 8]
+
+Tuplas (n-upla)
+	- Agregação de vários componentes (DU BOIS, s.d.), ou uma sequência de elementos que podem ser de tipos variados. Exemplos:
+(3, 4)
+(3, 4 * 3)
+(1077888, "Ricardo")
+(3 > 3, 4 + 4, True, 90.0) -- Por que Haskell permite isso, se é fortemente tipado?
+
+
+* Avaliação Preguiçosa (lazy evaluation) (baseado em DU BOIS, s.d.)
+	- Recurso presente nas linguagens de programação funcionais puras;
+	- Significa dizer que os argumentos das funções são avaliados somente quando necessário. Por exemplo:
+	f(x) = 20
+	f(-2+21^2/20-5/100) = 20
+	- Se a função sempre retornará 20, é necessário avaliar toda aquela expressão?
+	- Em linguagens imperativas, como C e Pascal, a expressão será completamente avaliada antes da chamada da função.
+
+(POSCOMP 2015) A linguagem de programação LISP usa o paradigma de:
+(A) programação procedural.
+(B) programação de tipos abstratos de dados.
+(C) programação orientada a objetos.
+(D) programação funcional.
+(E) programação declarativa
+
+(POSCOMP 2011) Com relação aos Paradigmas de Linguagens de Programação e as linguagens apresentadas na segunda coluna abaixo, relacione a primeira coluna com a segunda considerando a linguagem que melhor representa cada paradigma.
+(I) Programação Imperativa					(A) Linguagem Scheme
+(II) Programação Orientada a objetos 		(B) Linguagem Smalltalk
+(III) Programação Funcional 				(C) Linguagem Pascal
+(IV) Programação Lógica 					(D) Linguagem Prolog
+Assinale a alternativa que contém a associação correta.
+a) I-A, II-B, III-D, IV-C.
+b) I-B, II-A, III-C, IV-D.
+c) I-C, II-A, III-B, IV-D.
+d) I-C, II-B, III-A, IV-D.
+e) I-D, II-C, III-B, IV-A
+
+* Observações:
+	- Utilizamos o GHCi em aula, mas é possível usar algum serviço online, tal como o repl.it.
+	- Neste caso, as funções definidas devem funcionar corretamente, mas exibindo um aviso sobre a falta da função principal (main). Para isso, basta definir, no início do arquivo main.hs, uma função main sem retorno:
+		main = return ()
+	- Nem toda ferramenta online é interativos, então nem tudo que testamos aqui funcionará. Por exemplo, :t 2+2 pode não funcionar em alguma ferramenta. Uma forma válida e próxima disso poderia ser:
+		import Data.Typeable
+		fType :: Int
+		fType = 2 + 2
+		main = print (typeOf (fType)) 
+
+* Desvantagens	
+	- O custo da recursão;
+	- Ainda há poucos programadores;
+	- Dificuldade em prever os custos de tempo e memória em programas com avaliação preguiçosa
+
+* Lista 5.
+
+* Alguns tópicos da próxima aula
+	- Estrutura condicional (if e guardas)
+	- Listas
+	- Recursão
+	- Funções de alta ordem
+
+* Referências
+- DU BOIS, Andre Rauber. Programação Funcional com a Linguagem Haskell. Disponível em: http://www.inf.ufpr.br/andrey/ci062/ProgramacaoHaskell.pdf. Acesso em: 23 nov. 2020.
+- HASKELL. Predefined Types and Classes. Disponível em: https://www.haskell.org/onlinereport/haskell2010/haskellch6.html. Acesso em 21 nov. 2020.
+- HINDLEY, J. Roger; SELDIN, Jonathan P. Lambda-calculus and Combinators, an Introduction. Cambridge: Cambridge University Press, 2008.
+- RUEF, Andrew et al. Build it, break it, fix it: Contesting secure development. In: Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security. 2016. p. 690-703. Disponível em: https://arxiv.org/pdf/1606.01881.pdf. Acesso em: 21 nov. 2020.
+- Livro do SEBESTA.
