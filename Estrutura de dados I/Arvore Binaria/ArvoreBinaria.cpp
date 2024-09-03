@@ -209,11 +209,7 @@ No *ArvoreBinaria::buscarRecursivo(No *sub, int x)
 
 void ArvoreBinaria::imprimirEmOrdem(No *noAtual)
 {
-    if (noAtual == nullptr)
-        return;
-    imprimirEmOrdem(noAtual->esquerda);
-    std::cout << noAtual->chave << std::endl;
-    imprimirEmOrdem(noAtual->direita);
+   
 }
 
 void ArvoreBinaria::deleteArvore(No *noAtual)
