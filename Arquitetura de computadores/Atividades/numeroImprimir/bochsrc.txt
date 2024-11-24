@@ -1,0 +1,20 @@
+megs: 32
+#romimage: file=/usr/local/bochs/1.4.1/BIOS-bochs-latest, address=0xf0000
+#vgaromimage: /usr/local/bochs/1.4.1/VGABIOS-elpin-2.40
+clock: sync=realtime, rtc_sync=1, time0=local
+floppya: 1_44=floppy.img, status=inserted
+boot: a
+log: bochsout.txt
+mouse: enabled=0
+
+# Ativa o debugger
+display_library: x
+magic_break: enabled=1
+log: bochsout.txt
+panic: action=ask
+error: action=report
+info: action=report
+debug: action=ignore
+
+
+debugger_log: bochsdbg.txt  # Log das atividades do debugger
