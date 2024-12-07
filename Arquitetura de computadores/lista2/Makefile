@@ -3,7 +3,7 @@
 # version: September 6, 2024
 
 .PHONY: clean image
-SOURCE = teste
+SOURCE = writex
 all: image
 
 # generate floppy.img file (a floppy disk)

@@ -45,6 +45,19 @@ public:
     }
 };
 
+
+//estrutura do meu grafo 
+    unordered_map<int, vector<int>> adj; // Hashmap para lista de adjacência
+
+int bfs(Grafo& grafo, int vertice) {
+    for (grafo g : grafo) {
+        printf("BFS: "+g);
+    }
+
+}
+
+
+
 int main() {
     Grafo grafo;
 
