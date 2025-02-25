@@ -1,6 +1,11 @@
 .code16
-.text
 .globl _start
+.data
+    ex6: .word 0x1
+
+
+.text
+
 
 
 # http://www.gabrielececchetti.it/Teaching/CalcolatoriElettronici/Docs/i8086_instruction_set.pdf 
@@ -13,7 +18,7 @@
 
 
 _start:
-     jmp _1
+     jmp _19
 
 
 # Some dois números de 16 bits e armazene o resultado em um terceiro.
@@ -38,9 +43,9 @@ _2:
     movb $2, %bl            
     call multiplicar    
     # imprimir so para testar     
-    call _imprimir_ax       
-    call _imprimir_bx       
-    call _imprimir_cx       
+    # call _imprimir_ax       
+    # call _imprimir_bx       
+    # call _imprimir_cx       
     call _imprimir_dx     
     
     jmp loop_final          
@@ -102,7 +107,7 @@ _4:
 
 
 
-
+# Manipulação de Memória:
 # Leia um valor de uma posição de memória e armazene em um registrador.
 _5:
     # não consegui fazer 
@@ -110,7 +115,12 @@ _5:
 
 # Escreva um valor em uma posição específica da memória.
 _6:
-    # não consegui fazer 
+    # move a variavel ex6 para di 
+    movw $ex6, %di
+    # sobreescreve o valor que esta em di
+    movw $2, (%di)
+    jmp loop_final
+
 
 
 # Crie um array de números e calcule a soma de todos os elementos.
@@ -269,6 +279,12 @@ _12:
 # Utilize a pilha para passar parâmetros para subrotinas.
 _13:
 
+    mov $3, %ax         # Coloca o número 3 em AX
+    push %ax             # Empilha o número como parâmetro para a sub-rotina
+    call _imprimir_ax   
+    add $2, %sp          # limpa o parâmetro da pilha
+
+
 
 
 # Entrada e Saída:
@@ -298,7 +314,6 @@ texto:
 
 
 
-
 # Utilize a interrupção 21h para realizar operações de entrada e saída.
 _16:
 
@@ -306,17 +321,15 @@ _16:
 
 
 
-
 # Manipulação de Strings:
+
+
 
 # Copie uma string de uma área da memória para outra.
 _17:
 
-
-
 # Compare duas strings para verificar se são iguais.
 _18:
-
 
 # Concatene duas strings.
 _19:
@@ -327,150 +340,126 @@ _19:
 
 
 
+# criei metodos para imprimir o que estiver nos registradores 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Função para imprimir o valor de AX em formato decimal
 _imprimir_ax:
-    push %bx                # Salva o valor de BX na pilha
-    push %cx                # Salva o valor de CX na pilha
-    push %dx                # Salva o valor de DX na pilha
-
-    movw %ax, %dx           # Copia o valor de AX para DX (valor a ser impresso)
-    movw $10, %bx           # Divisor para conversão em decimal (base 10)
-    xorw %cx, %cx           # Zera o contador de dígitos
-    xorw %cx, %cx           # Zera o contador de dígitos
+    push %bx
+    push %cx
+    push %dx
+    movw %ax, %dx
+    movw $10, %bx
+    xorw %cx, %cx
+    xorw %cx, %cx
 
 decimal_loop_ax:
-    xorw %dx, %dx           # Zera o valor de DX
-    divw %bx                # Divide AX por 10, o resto vai para DX
-    addw $48, %dx           # Converte o resto para o caractere correspondente ('0'-'9')
-    push %dx                # Armazena o caractere na pilha
-    inc %cx                 # Incrementa o contador de dígitos
-    testw %ax, %ax          # Verifica se o quociente é 0
-    jnz decimal_loop_ax     # Se não for 0, continua dividindo
+    xorw %dx, %dx
+    divw %bx
+    addw $48, %dx
+    push %dx
+    inc %cx
+    testw %ax, %ax
+    jnz decimal_loop_ax
 
 print_digits_ax:
-    pop %dx                 # Restaura o próximo dígito da pilha
-    movb %dl, %al           # Move o caractere para AL (necessário para int 0x10)
-    movb $0x0E, %ah         # Função de exibição de caractere (teletipo BIOS)
-    int $0x10               # Chama a interrupção de vídeo
-    dec %cx                 # Decrementa o contador de dígitos
-    jnz print_digits_ax     # Se ainda há dígitos, continua imprimindo
+    pop %dx
+    movb %dl, %al
+    movb $0x0E, %ah
+    int $0x10
+    dec %cx
+    jnz print_digits_ax
 
-    pop %dx                 # Restaura DX
-    pop %cx                 # Restaura CX
-    pop %bx                 # Restaura BX
-    ret                     # Retorna da função
+    pop %dx
+    pop %cx
+    pop %bx
+    ret
 
-# Função para imprimir o valor de BX em formato decimal
 _imprimir_bx:
-    push %ax                # Salva o valor de AX na pilha
-    push %cx                # Salva o valor de CX na pilha
-    push %dx                # Salva o valor de DX na pilha
-
-    movw %bx, %ax           # Copia o valor de BX para AX (valor a ser impresso)
-    movw $10, %bx           # Divisor para conversão em decimal (base 10)
-    xorw %cx, %cx           # Zera o contador de dígitos
+    push %ax
+    push %cx
+    push %dx
+    movw %bx, %ax
+    movw $10, %bx
+    xorw %cx, %cx
 
 decimal_loop_bx:
-    xorw %dx, %dx           # Zera o valor de DX
-    divw %bx                # Divide AX por 10, o resto vai para DX
-    addw $48, %dx           # Converte o resto para o caractere correspondente ('0'-'9')
-    push %dx                # Armazena o caractere na pilha
-    inc %cx                 # Incrementa o contador de dígitos
-    testw %ax, %ax          # Verifica se o quociente é 0
-    jnz decimal_loop_bx     # Se não for 0, continua dividindo
+    xorw %dx, %dx
+    divw %bx
+    addw $48, %dx
+    push %dx
+    inc %cx
+    testw %ax, %ax
+    jnz decimal_loop_bx
 
 print_digits_bx:
-    pop %dx                 # Restaura o próximo dígito da pilha
-    movb %dl, %al           # Move o caractere para AL (necessário para int 0x10)
-    movb $0x0E, %ah         # Função de exibição de caractere (teletipo BIOS)
-    int $0x10               # Chama a interrupção de vídeo
-    dec %cx                 # Decrementa o contador de dígitos
-    jnz print_digits_bx     # Se ainda há dígitos, continua imprimindo
+    pop %dx
+    movb %dl, %al
+    movb $0x0E, %ah
+    int $0x10
+    dec %cx
+    jnz print_digits_bx
 
-    pop %dx                 # Restaura DX
-    pop %cx                 # Restaura CX
-    pop %ax                 # Restaura AX
-    ret                     # Retorna da função
+    pop %dx
+    pop %cx
+    pop %ax
+    ret
 
-# Função para imprimir o valor de CX em formato decimal
 _imprimir_cx:
-    push %ax                # Salva o valor de AX na pilha
-    push %bx                # Salva o valor de BX na pilha
-    push %dx                # Salva o valor de DX na pilha
-
-    movw %cx, %ax           # Copia o valor de CX para AX (valor a ser impresso)
-    movw $10, %bx           # Divisor para conversão em decimal (base 10)
-    xorw %cx, %cx           # Zera o contador de dígitos
+    push %ax
+    push %bx
+    push %dx
+    movw %cx, %ax
+    movw $10, %bx
+    xorw %cx, %cx
 
 decimal_loop_cx:
-    xorw %dx, %dx           # Zera o valor de DX
-    divw %bx                # Divide AX por 10, o resto vai para DX
-    addw $48, %dx           # Converte o resto para o caractere correspondente ('0'-'9')
-    push %dx                # Armazena o caractere na pilha
-    inc %cx                 # Incrementa o contador de dígitos
-    testw %ax, %ax          # Verifica se o quociente é 0
-    jnz decimal_loop_cx     # Se não for 0, continua dividindo
+    xorw %dx, %dx
+    divw %bx
+    addw $48, %dx
+    push %dx
+    inc %cx
+    testw %ax, %ax
+    jnz decimal_loop_cx
 
 print_digits_cx:
-    pop %dx                 # Restaura o próximo dígito da pilha
-    movb %dl, %al           # Move o caractere para AL (necessário para int 0x10)
-    movb $0x0E, %ah         # Função de exibição de caractere (teletipo BIOS)
-    int $0x10               # Chama a interrupção de vídeo
-    dec %cx                 # Decrementa o contador de dígitos
-    jnz print_digits_cx     # Se ainda há dígitos, continua imprimindo
+    pop %dx
+    movb %dl, %al
+    movb $0x0E, %ah
+    int $0x10
+    dec %cx
+    jnz print_digits_cx
 
-    pop %dx                 # Restaura DX
-    pop %bx                 # Restaura BX
-    pop %ax                 # Restaura AX
-    ret                     # Retorna da função
+    pop %dx
+    pop %bx
+    pop %ax
+    ret
 
-# Função para imprimir o valor de DX em formato decimal
 _imprimir_dx:
-    push %bx                # Salva o valor de BX na pilha
-    push %cx                # Salva o valor de CX na pilha
-
-    movw %dx, %ax           # Copia o valor de DX para AX (valor a ser impresso)
-    movw $10, %bx           # Divisor para conversão em decimal (base 10)
-    xorw %cx, %cx           # Zera o contador de dígitos
+    push %bx
+    push %cx
+    movw %dx, %ax
+    movw $10, %bx
+    xorw %cx, %cx
 
 decimal_loop_dx:
-    xorw %dx, %dx           # Zera o valor de DX
-    divw %bx                # Divide AX por 10, o resto vai para DX
-    addw $48, %dx           # Converte o resto para o caractere correspondente ('0'-'9')
-    push %dx                # Armazena o caractere na pilha
-    inc %cx                 # Incrementa o contador de dígitos
-    testw %ax, %ax          # Verifica se o quociente é 0
-    jnz decimal_loop_dx     # Se não for 0, continua dividindo
+    xorw %dx, %dx
+    divw %bx
+    addw $48, %dx
+    push %dx
+    inc %cx
+    testw %ax, %ax
+    jnz decimal_loop_dx
 
 print_digits_dx:
-    pop %dx                 # Restaura o próximo dígito da pilha
-    movb %dl, %al           # Move o caractere para AL (necessário para int 0x10)
-    movb $0x0E, %ah         # Função de exibição de caractere (teletipo BIOS)
-    int $0x10               # Chama a interrupção de vídeo
-    dec %cx                 # Decrementa o contador de dígitos
-    jnz print_digits_dx     # Se ainda há dígitos, continua imprimindo
+    pop %dx
+    movb %dl, %al
+    movb $0x0E, %ah
+    int $0x10
+    dec %cx
+    jnz print_digits_dx
 
-    pop %cx                 # Restaura CX
-    pop %bx                 # Restaura BX
-    ret                     # Retorna da função
-
+    pop %cx
+    pop %bx
+    ret
 
 
 

@@ -1,0 +1,7 @@
+Exercícios
+1) Deduza o número máximo de páginas e elementos que uma árvore B de ordem d e altura h pode conter.
+2) Desenhe uma árvore B de ordem 3 que contenha as seguintes chaves: 12, 14, 17, 19, 25, 43, 47, 49, 50, 52, 54;
+3) Complete o código do arquivo ArvoreB.cpp. Acrescente casos e funções que julgue necessárias.
+4) Comente o código Trie.c.
+5) Existe alguma biblioteca que implemente essas estruturas em C, C++ e/ou Python?
+6) Em que situação o uso de Tabelas Hash é melhor que o uso de Árvores B?

@@ -1,0 +1,151 @@
+Árvores BST
+    - Não é necessariamente balanceada
+    - Prejudicada por inserções ordenadas - O(n)
+        * Fica semelhante a uma lista encadeada
+
+Árvores AVL (Adelson-Velsky e Landis)
+    - A estrutura da árvore ganha mais um atributo: balanço.
+    - A Árvore está balanceada se a altura de cada uma das suas subárvores é igual ou difere em 1.
+        Assim, cada nó tem um valor de balanço que é -1, 0 ou 1.
+            -1: a subárvore direita tem maior profundidade
+            0: ambas subárvores têm a mesma profundidade.
+            1: a subárvore esquerda tem maior profundidade.
+    - Cada nó que satisfaz o balanceamento está regulado.
+    - O nó que não satisfaz a propriedade está desregulado.
+    - Quando um nó está desregulado, é necessário restabelecer a regulagem ou balancear.
+        Rotação à direita quando a subárvore esquerda fica maior.
+        Rotação à esquerda quando a subárvore direita fica maior.
+
+Árvores Rubro-Negras (Red-Black Trees)
+    - Árvore balanceada que possui nós com um atributo de cor, que pode ser vermelho ou preto.
+    - A raíz é sempre preta.
+    - Todas as folhas são pretas.
+    - Não há dois nós vermelhos adjacentes.
+    - Busca, inserção e remoção com complexidade O(log n).
+    - Todos os caminhos de algum nó para suas folhas contêm o mesmo número de nós negros
+    - Os dois filhos de um nó vermelho são pretos.
+    - A árvore mantém regras específicas para garantir que o caminho mais longo da raiz a uma folha seja no máximo duas vezes o caminho mais curto. Isso garante que a árvore permaneça aproximadamente balanceada.
+
+Ler os arquivos dos materiais complementares: https://docs.google.com/document/d/1vF1inScJAiLOhVZ_uYHcQgPVe6sKpRozJLaxDlnt4dI/edit?usp=sharing
+
+Qual é a melhor escolha?
+    - BSTs são simples de implementar.
+    - BSTs podem ser consideradas se a inserção dos dados não acontece de forma ordenada (ou acontece muito pouco).
+    - BSTs também podem ser consideradas quando as inserções são feitas de forma naturalmente balanceada.
+    - Red-Black Tree é a melhor escolha quando são feitas muitas inserções e remoções.
+        * Garantem balanceamento fazendo menos rotações do que as AVL.
+        * Inserções e remoções têm melhor desempenho em média.
+        * A árvore pode ficar um pouco desbalanceada em comparação à AVL, mas ainda assim o tempo de busca é O(log n).
+    - AVL é ideal para aplicações que fazem muitas buscas, especialmente quando o número de atualizações é baixo em comparação com as leituras.
+        * Mantém um balanceamento mais rigoroso, garantindo uma profundidade muito próxima de O(log n).
+        * A busca é sempre eficiente, mas com custo de rotações (que pode se tornar grande à medida em que inserções e remoções são realizadas) para manter a árvore balanceada.
+    - Se a árvore é atualizada com frequência, a Red-Black deve ser preferida.
+    - Se buscas rápidas são a prioridade, a AVL deve ser a preferida.
+
+Em grandes volumes de dados e em cenários de acessos à memória (principal e secundária), existe a necessidade de otimização em operações de busca, inserção, e remoção quando essas operações são frequentes. 
+
+Existem estruturas projetadas para resolver problemas específicos de eficiência, escalabilidade e uso em ambientes de grandes dados. Entre elas estão as árvores B, B+, Trie e Patrícia Trie.
+
+Árvore B
+- Árvore projetada para sistemas de armazenamento que buscam e inserem grandes volumes de dados.
+- Foi criada para melhorar a eficiência de armazenar e recuperar grandes volumes de dados em sistemas de armazenamento secundário, como discos rígidos.
+- A principal motivação foi reduzir o número de acessos ao disco durante operações de busca, inserção e remoção.
+    * Pensada especialmente em contextos onde o volume de dados é tão grande que não cabe na memória principal.
+- Nós também são chamados de páginas.
+- Páginas folha estão todas no mesmo nível.
+- Os registros de uma árvore B são ordenados.
+- Árvores B são n-árias (os nós não são restritos ao número máximo de 2 filhos).
+    * São vistas como uma generalização das BST.
+- São usadas em SO (sistemas de arquivos, como NTFS e HFS) e BD (exemplos: Oracle e PostgreSQL).
+- Busca, inserção e remoção ocorrem em O(log n).
+- A inserção de dados pode ocorrer de duas formas:
+    1) o registro encontra seu lugar em uma página com menos de 2m registros.
+        Insere o dado nesta página.
+    2) o registro encontra seu lugar em uma página com 2m registros.
+        É necessário fazer um ajuste que envolve a criação de nova(s) página(s).
+        Ver p. 8-12 do arquivo "Árvores B.pdf".
+- A remoção pode ocorrer de duas formas:
+    1) o registro se encontra em uma página folha.
+        • 1.1: A folha possui mais que m registros
+        • 1.2: A folha possui apenas m registro e o irmão possui m+1 registros
+        • 1.3: A folha e seus irmãos possuem apenas m registros
+    2) o registro não se encontra em uma folha.
+        O registro a ser retirado deve ser substituído por um outro para depois ser excluído.
+        Ver p. 13-32 do arquivo "Árvores B.pdf".
+
+ArvoreB.cpp
+ArvoreB.py
+
+Árvore B+
+- Semelhante à árvore B, esse tipo de árvore tenta resolver alguns problemas não cobertos pela árvore B.
+- Também aplicável em SO e BD.
+- Mantém todas as chaves de busca nos nós folha.
+- Os nós internos contêm apenas chaves que funcionam como guias para localizar os nós folha.
+- As folhas estão todas interligadas por ponteiros, formando uma lista encadeada. Isso facilita a busca sequencial (como em operações de varredura ou acesso a valores de um intervalo).
+- A altura da árvore é a mesma que a da árvore B, com complexidade O(log n) para busca, inserção e remoção.
+- Como as chaves dos nós internos não armazenam dados, uma árvore B+ pode conter mais chaves em cada nó interno, o que torna as operações de busca mais rápidas, já que o número de níveis na árvore pode ser menor.
+- Assim o acesso sequencial ordenado das chaves de busca é mais eficiente do que em árvores B.
+    * Em árvore B, esse acesso específico precisa ser feito com algum algoritmo de percurso (ex: em-ordem).
+
+ArvoreBMais.cpp
+
+Resumo das diferenças:
+- B: Dados podem ser armazenados em nós internos e nós folha. B+: Todos os dados são armazenados apenas nas folhas.
+- B: Para realizar uma busca sequencial, é necessário percorrer a árvore. B+: As folhas são interligadas, facilitando buscas sequenciais mais rápidas.
+- B: Pode ser menos eficiente que a B+, pois a busca pode parar em um nó interno que também armazena dados. B+: A busca sempre percorre até o nó folha, onde os dados são efetivamente armazenados, tornando-a mais eficiente para leitura.
+
+Existem outros tipos de árvores B, como B* e 2-3.
+Na 2-3, os nós não folha possuem sempre 1 ou 2 chaves e 2 ou 3 filhos.  O(log n) para as operações de dicionário e altura da árvore entre log2n e log3n.
+
+Árvores de prefixo.
+
+Árvore Trie
+- reTRIEval
+- É uma árvore de busca, assim como BST, B, Red-black etc.
+- http://netto.ufpel.edu.br/lib/exe/fetch.php?media=aed2:tries.pdf
+- Também conhecida como árvore de prefixo.
+- Serve para armazenar um conjunto de strings.
+- Cada nó da árvore representa um prefixo comum de strings armazenadas na árvore.
+- Cada nó da árvore representa um caractere de um prefixo comum.
+- A raiz da trie representa um prefixo vazio.
+- O caminho da raiz a um nó representa um prefixo comum das strings armazenadas.
+- Strings completas podem ser armazenadas nos nós folhas ou em nós internos, dependendo da implementação.
+- Permite buscas, inserções e exclusões eficientes de strings e prefixos.
+- Usada por corretores ortográficos, verificando e sugerindo correções para palavras.
+    * Exemplo: se a palavra não existe na trie, pode sublinhar o texto.
+    * Se existir uma palavra parecida, pode sugerir a substituição da palavra.
+- Usada também por sistemas de autocomplete, sugerindo palavras ou frases baseadas em prefixos inseridos.
+- Em C++, se implementa com map ou unordered_map.
+- Em Python, pode-se implementar usando dict.
+
+Trie.c
+Trie em JS para autocomplete (index.html)
+https://drive.google.com/file/d/1SNFyvhgYSPOE5CYz_EpHcgEryhhkAA0h/view?usp=sharing
+
+Árvore Patricia
+- Também conhecida como Trie compacta.
+- Versão otimizada da Trie.
+- Projetada para reduzir o número de nós e aumentar a eficiência do armazenamento e busca.
+- Cada nó da árvore Patricia armazena uma substring (ou um bloco de caracteres) em vez de um único caractere.
+- Os caminhos de comprimento maior (que representam prefixos comuns) são compactados em um único nó.
+- Elimina nós desnecessários que têm apenas um filho, resultando em uma árvore mais compacta e eficiente.
+    * Exemplo: I-F-C vira uma árvore com um nó IFC.
+- Usada no armazenamento de rotas em sistemas de roteamento.
+- Usada em prefixos IP.
+- Implementa dicionários de palavras de forma compacta e eficiente.
+- Devido à compactação, em geral consome menos memória que a trie.
+- Devido à complexidade, é menos simples de implementar se comparada à trie.
+- Ler: https://www.cs.emory.edu/~cheung/Courses/253/Syllabus/Text/trie02.html
+
+Leitura e resolução de exercícios: https://www2.unifap.br/furtado/files/2016/11/Aula5.pdf (consta nos materiais complementares).
+
+O objetivo das árvores B e de prefixo muda sensivelmente.
+B: otimiza o acesso a dados armazenados em disco.
+Prefixo: otimização de buscas em string.
+
+Simuladores:
+https://www.cs.usfca.edu/~galles/visualization/BTree.html
+https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html
+https://kubokovac.eu/gnarley-trees/Trie.html
+https://kubokovac.eu/gnarley-trees/23tree.html
+https://www.cs.usfca.edu/~galles/visualization/Trie.html

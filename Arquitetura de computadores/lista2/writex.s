@@ -18,15 +18,15 @@ _limparTelal:
  # AH = 06h função de rolagem para cima
     movb $0x06, %ah         
     movb $0x00, %al    
-    # BH= 07h  passar atributo branco sobre preto   
+    # BH=07h  passar atributo branco sobre preto   
     movb $0x07, %bh         
-    # CH= 00h lin inicial
+    # CH=00h lin inicial
     movb $0x00, %ch  
-    # CL= 00h Col inicial     
+    # CL=00h colu inicial     
     movb $0x00, %cl         
-    # DH= 24 lin final 
+    # DH=24 lin final 
     movb $0xC8, %dh    
-    # DL= 79  col final     
+    # DL=79  colu final     
     movb $0xC8, %dl         
 
     int $0x10               

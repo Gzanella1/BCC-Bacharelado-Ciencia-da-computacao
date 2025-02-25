@@ -1,0 +1,33 @@
+** Tabela Hash **
+
+Tabela hash é uma estrutura de dados que associa chaves a valores. Ela usa uma função chamada função de hash para mapear uma chave a um índice em um array de tamanho fixo, chamado de bucket. Isso permite acesso rápido (em média, O(1)) aos valores associados às chaves.
+
+As tabelas hash são muito eficientes em termos de tempo para:
+- Inserção: Adicionar um par chave-valor.
+- Busca: Procurar um valor dado uma chave.
+- Remoção: Remover um par chave-valor.
+
+Complexidade das Funções:
+Inserção: A inserção em uma tabela hash tem complexidade O(1) em média, já que a função de hash mapeia diretamente a chave para o índice. Porém, no pior caso (quando há muitas colisões), pode ser O(n), onde n é o número de elementos no bucket.
+Busca: A busca também tem complexidade O(1) em média, mas, em caso de colisão, pode ser necessário percorrer uma lista encadeada no bucket, tornando a complexidade O(n) no pior caso.
+
+Aplicações Práticas:
+- Dicionários ou Mapas: Mapeamento de chaves para valores, como o exemplo de países e capitais.
+- Armazenamento de Cache: Para buscas rápidas, armazenando resultados previamente calculados.
+- Implementação de Conjuntos: Para verificar rapidamente se um elemento pertence a um conjunto.
+- Banco de Dados: Para indexação e busca rápida de registros.
+
+Em C, usa-se array e lista encadeada.
+Em C++, usa-se a estrutura unordered_map da STL, que implementa uma tabela hash internamente.
+Em Python: dict é o dicionário em Python. Ele implementa tabela hash internamente.
+
+Hash.c
+Hash.cpp
+Hash.py
+
+Colisão:
+- A colisão ocorre em uma tabela hash quando a função de hash mapeia duas ou mais chaves diferentes para o mesmo índice na tabela.
+- Como a tabela hash usa uma função para calcular um índice (ou posição) em um array baseado na chave fornecida, idealmente, cada chave deve ter somente um índice.
+- No entanto, devido a limitações no tamanho da tabela e ao comportamento da função de hash, é possível que diferentes chaves gerem o mesmo índice, resultando em uma colisão.
+- Se dois pares chave-valor estão associados ao mesmo índice, o segundo par chave-valor sobrescreve o primeiro.
+    * Solução: em vez de usar um valor, usa-se uma lista encadeada de valores.

@@ -3,6 +3,6 @@ megs: 32
 #vgaromimage: /usr/local/bochs/1.4.1/VGABIOS-elpin-2.40
 clock: sync=realtime, rtc_sync=1, time0=local
 floppya: 1_44=floppy.img, status=inserted
-boot: floppy
+boot: a
 log: bochsout.txt
 mouse: enabled=0 
